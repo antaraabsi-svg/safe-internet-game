@@ -1,0 +1,2706 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>زيؤان | دليل إعداد المشروع البيداغوجي</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+  --green-950:#04241a;
+  --green-900:#0a3d2c;
+  --green-800:#0f5138;
+  --green-700:#146849;
+  --green-100:#e6f2ec;
+  --gold:#c9a227;
+  --gold-light:#e6c65c;
+  --blue:#1b4f9c;
+  --purple:#6b3fa0;
+  --paper:#f6f5f0;
+  --paper-dim:#ece9df;
+  --ink:#17241d;
+  --ink-soft:#4a5750;
+  --white:#ffffff;
+  --danger:#b23b3b;
+  --radius-lg:22px;
+  --radius-md:14px;
+  --radius-sm:9px;
+  --shadow-soft:0 10px 30px -12px rgba(10,61,44,0.25);
+  --shadow-card:0 4px 18px -6px rgba(10,61,44,0.18);
+  font-family:'Cairo','IBM Plex Sans Arabic',Tahoma,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(1200px 600px at 90% -10%, rgba(201,162,39,0.10), transparent 60%),
+    radial-gradient(1000px 500px at -10% 10%, rgba(27,79,156,0.08), transparent 55%),
+    var(--paper);
+  color:var(--ink);
+  min-height:100vh;
+  line-height:1.65;
+}
+::selection{background:var(--gold-light);color:var(--green-950);}
+a{color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{margin:0;font-weight:800;}
+p{margin:0;}
+.hidden{display:none !important;}
+.container{max-width:1180px;margin:0 auto;padding:0 22px;}
+
+/* ---------- Glass card ---------- */
+.glass{
+  background:rgba(255,255,255,0.68);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(255,255,255,0.55);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-card);
+}
+
+/* ---------- Top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:linear-gradient(180deg, rgba(10,61,44,0.97), rgba(10,61,44,0.94));
+  color:#fff;
+  border-bottom:3px solid var(--gold);
+}
+.topbar-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 22px;max-width:1180px;margin:0 auto;gap:14px;
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-emblem{
+  width:44px;height:44px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold) 60%, #8a6c15 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;color:var(--green-950);font-size:18px;
+  box-shadow:0 0 0 3px rgba(255,255,255,0.15);
+  flex-shrink:0;
+}
+.brand-text .t1{font-size:14px;font-weight:600;color:var(--gold-light);letter-spacing:.5px;}
+.brand-text .t2{font-size:17px;font-weight:800;}
+.topbar-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.chip-btn{
+  background:rgba(255,255,255,0.10);
+  color:#fff;border:1px solid rgba(255,255,255,0.25);
+  padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;
+  display:flex;align-items:center;gap:6px;transition:.2s;
+}
+.chip-btn:hover{background:rgba(255,255,255,0.2);}
+.progress-pill{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700;
+  color:var(--gold-light);
+}
+.progress-track{width:90px;height:6px;background:rgba(255,255,255,0.2);border-radius:6px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:6px;transition:width .4s ease;}
+
+/* ---------- Hero / Home ---------- */
+.hero{padding:64px 0 40px;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green-100);color:var(--green-800);
+  padding:7px 16px;border-radius:999px;font-size:13px;font-weight:700;
+  border:1px solid rgba(15,81,56,0.15);
+}
+.hero h1{
+  font-size:clamp(28px,4.2vw,46px);
+  margin-top:18px;line-height:1.25;
+  color:var(--green-950);
+}
+.hero h1 span{color:var(--gold);}
+.hero p.lead{
+  margin-top:16px;font-size:17px;color:var(--ink-soft);max-width:760px;
+}
+.hero-cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;}
+.btn{
+  border:none;border-radius:999px;padding:15px 30px;font-weight:800;font-size:15.5px;
+  display:inline-flex;align-items:center;gap:10px;transition:.2s;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--green-800),var(--green-950));
+  color:#fff;box-shadow:0 12px 24px -10px rgba(10,61,44,0.55);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 28px -10px rgba(10,61,44,0.6);}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  color:var(--green-950);
+}
+.btn-gold:hover{transform:translateY(-2px);}
+.btn-ghost{
+  background:transparent;border:1.5px solid rgba(10,61,44,0.25);color:var(--green-900);
+}
+.btn-ghost:hover{background:rgba(10,61,44,0.06);}
+.btn-sm{padding:9px 16px;font-size:13.5px;border-radius:10px;}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none !important;}
+
+.legal-strip{
+  margin-top:38px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;
+}
+.legal-card{padding:18px 20px;}
+.legal-card .ic{font-size:22px;}
+.legal-card h4{font-size:14.5px;margin-top:10px;color:var(--green-900);}
+.legal-card p{font-size:13px;color:var(--ink-soft);margin-top:6px;}
+
+.section{padding:46px 0;}
+.section-head{margin-bottom:26px;}
+.eyebrow{
+  color:var(--gold);font-weight:800;font-size:12.5px;letter-spacing:1px;text-transform:uppercase;
+}
+.section-head h2{font-size:clamp(22px,3vw,30px);margin-top:8px;color:var(--green-950);}
+.section-head p{color:var(--ink-soft);margin-top:8px;max-width:680px;font-size:15px;}
+
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+
+.dash-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;}
+.dash-step{
+  background:#fff;border:1.5px solid rgba(10,61,44,.12);border-radius:14px;padding:14px 12px;text-align:center;
+  cursor:pointer;transition:.15s;box-shadow:var(--shadow-card);
+}
+.dash-step:hover{transform:translateY(-3px);}
+.dash-step.dash-locked{cursor:not-allowed;opacity:.5;}
+.dash-step.dash-locked:hover{transform:none;}
+.dash-icon{font-size:22px;margin-bottom:8px;}
+.dash-lbl{font-size:11.5px;font-weight:700;color:var(--ink-soft);line-height:1.4;}
+.dash-step.dash-done{background:var(--green-100);border-color:var(--green-700);}
+.dash-step.dash-done .dash-lbl{color:var(--green-900);}
+.dash-step.dash-partial{background:#fdf9ec;border-color:var(--gold);}
+.dash-step.dash-partial .dash-lbl{color:#8a6c15;}
+.info-card{padding:22px;}
+.info-card .num{
+  width:34px;height:34px;border-radius:10px;
+  background:var(--green-900);color:#fff;font-weight:800;
+  display:flex;align-items:center;justify-content:center;font-size:14px;margin-bottom:12px;
+}
+.info-card h4{font-size:15px;color:var(--green-950);}
+.info-card p{font-size:13.5px;color:var(--ink-soft);margin-top:8px;}
+
+/* ---------- Wizard layout ---------- */
+.wizard-wrap{display:grid;grid-template-columns:270px 1fr;gap:22px;align-items:start;padding:30px 0 70px;}
+@media (max-width:880px){.wizard-wrap{grid-template-columns:1fr;}}
+
+.stepper{
+  position:sticky;top:88px;padding:20px 16px;
+}
+.stepper h3{font-size:13px;color:var(--green-900);padding:0 8px 12px;text-transform:uppercase;letter-spacing:.5px;}
+.stepper-list{list-style:none;margin:0;padding:0;position:relative;}
+.stepper-list::before{
+  content:"";position:absolute;right:24px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(var(--paper-dim),var(--paper-dim));
+}
+.step-item{
+  display:flex;align-items:flex-start;gap:12px;padding:9px 8px;border-radius:12px;
+  cursor:pointer;position:relative;z-index:1;transition:.15s;
+}
+.step-item:hover{background:rgba(10,61,44,0.06);}
+.step-item.locked{cursor:not-allowed;opacity:.5;}
+.step-item .dot{
+  width:34px;height:34px;border-radius:50%;background:#fff;border:2px solid var(--paper-dim);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--ink-soft);
+  flex-shrink:0;transition:.2s;
+}
+.step-item.done .dot{background:var(--green-800);border-color:var(--green-800);color:#fff;}
+.step-item.active .dot{background:var(--gold);border-color:var(--gold);color:var(--green-950);box-shadow:0 0 0 4px rgba(201,162,39,0.25);}
+.step-item .lbl{font-size:13.5px;font-weight:700;color:var(--ink);padding-top:6px;}
+.step-item.active .lbl{color:var(--green-950);}
+
+.step-panel{padding:32px;min-height:520px;}
+.step-header{border-bottom:1px dashed rgba(10,61,44,0.18);padding-bottom:20px;margin-bottom:24px;}
+.step-kicker{display:flex;align-items:center;gap:10px;color:var(--gold);font-weight:800;font-size:13px;}
+.step-kicker .circle{
+  width:28px;height:28px;border-radius:50%;background:var(--green-950);color:var(--gold-light);
+  display:flex;align-items:center;justify-content:center;font-size:12.5px;
+}
+.step-panel h2{font-size:23px;color:var(--green-950);margin-top:10px;}
+.step-panel .subtitle{color:var(--ink-soft);font-size:14.5px;margin-top:6px;}
+
+.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;}
+@media (max-width:700px){.ref-grid{grid-template-columns:1fr;}}
+.ref-box{background:var(--paper);border-radius:var(--radius-md);padding:16px 18px;border:1px solid rgba(10,61,44,0.08);}
+.ref-box h5{font-size:13px;color:var(--green-800);display:flex;align-items:center;gap:7px;}
+.ref-box ul{margin:10px 0 0;padding-inline-start:18px;font-size:13.3px;color:var(--ink-soft);}
+.ref-box ul li{margin-bottom:5px;}
+.ref-box.warn{background:#fbf1f1;border-color:rgba(178,59,59,0.15);}
+.ref-box.warn h5{color:var(--danger);}
+.ref-box.tip{background:#eef6f0;border-color:rgba(15,81,56,0.15);}
+.ref-box.tip h5{color:var(--green-800);}
+
+.form-block{margin-bottom:22px;}
+.form-block label{display:block;font-size:14px;font-weight:700;color:var(--green-950);margin-bottom:8px;}
+.form-block .hint{font-size:12.3px;color:var(--ink-soft);margin-top:6px;}
+.form-block textarea, .form-block input[type=text], .form-block select{
+  width:100%;border:1.5px solid rgba(10,61,44,0.18);border-radius:var(--radius-sm);
+  padding:12px 14px;font-family:inherit;font-size:14.5px;background:#fff;color:var(--ink);
+  transition:.15s;
+}
+.form-block textarea{min-height:90px;resize:vertical;}
+.form-block textarea:focus, .form-block input:focus, .form-block select:focus{
+  outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,39,0.18);
+}
+.required-mark{color:var(--danger);margin-inline-start:3px;}
+.field-error{border-color:var(--danger) !important;}
+.error-msg{color:var(--danger);font-size:12.3px;margin-top:6px;display:none;}
+.error-msg.show{display:block;}
+
+.field-example{margin-top:8px;}
+.example-toggle{
+  background:none;border:none;color:var(--blue);font-size:12.3px;font-weight:700;padding:2px 0;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.example-toggle:hover{text-decoration:underline;}
+.example-box{
+  margin-top:8px;background:#fdf9ec;border:1.5px dashed var(--gold);border-radius:10px;padding:12px 14px;
+}
+.example-box.hidden{display:none;}
+.example-box .ex-content{font-size:13px;color:var(--ink-soft);white-space:pre-wrap;line-height:1.6;}
+.example-box .ex-content table{width:100%;border-collapse:collapse;margin-top:4px;font-size:12.3px;}
+.example-box .ex-content th{background:var(--paper-dim);padding:5px 8px;text-align:right;font-size:11.3px;}
+.example-box .ex-content td{padding:5px 8px;border-bottom:1px solid var(--paper-dim);}
+.example-box .use-example-btn{
+  margin-top:10px;background:var(--gold);color:var(--green-950);border:none;border-radius:8px;
+  padding:7px 14px;font-size:12.3px;font-weight:800;
+}
+
+.checklist{display:flex;flex-wrap:wrap;gap:10px;}
+.chk-opt{
+  display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid rgba(10,61,44,0.15);
+  padding:9px 14px;border-radius:10px;font-size:13.5px;cursor:pointer;transition:.15s;
+}
+.chk-opt input{accent-color:var(--green-800);}
+.chk-opt.checked{background:var(--green-100);border-color:var(--green-700);color:var(--green-900);font-weight:700;}
+
+.group-field table{width:100%;border-collapse:collapse;font-size:13.3px;}
+.group-field th{
+  background:var(--green-900);color:#fff;text-align:right;padding:10px 12px;font-size:12.5px;font-weight:700;
+}
+.group-field th:first-child{border-radius:10px 0 0 0;}
+.group-field th:last-child{border-radius:0 10px 0 0;}
+.group-field td{padding:8px;border-bottom:1px solid rgba(10,61,44,0.1);background:#fff;vertical-align:top;}
+.group-field td input, .group-field td textarea{
+  width:100%;border:1px solid rgba(10,61,44,0.15);border-radius:7px;padding:8px 10px;font-family:inherit;font-size:13px;
+}
+.group-field .rm-row{background:transparent;border:none;color:var(--danger);font-size:17px;font-weight:900;}
+.group-cards{display:none;}
+@media (max-width:760px){
+  .group-field table{display:none;}
+  .group-cards{display:block;}
+  .group-card{background:#fff;border:1px solid rgba(10,61,44,0.12);border-radius:12px;padding:14px;margin-bottom:12px;}
+  .group-card .gc-field{margin-bottom:8px;}
+  .group-card .gc-field label{font-size:12px;font-weight:700;color:var(--green-800);display:block;margin-bottom:4px;}
+  .group-card .gc-field input, .group-card .gc-field textarea{width:100%;border:1px solid rgba(10,61,44,0.15);border-radius:7px;padding:8px 10px;font-family:inherit;font-size:13px;}
+}
+.add-row-btn{
+  margin-top:10px;background:var(--green-100);color:var(--green-900);border:1.5px dashed var(--green-700);
+  padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;
+}
+
+.step-summary-box{
+  background:var(--green-100);border-radius:var(--radius-md);padding:18px 20px;margin-top:26px;border:1px solid rgba(15,81,56,0.15);
+}
+.step-summary-box h5{color:var(--green-900);font-size:13.5px;display:flex;align-items:center;gap:7px;}
+.step-summary-box .sm-content{font-size:13px;color:var(--ink-soft);margin-top:8px;white-space:pre-wrap;}
+
+.step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:34px;padding-top:22px;border-top:1px dashed rgba(10,61,44,0.18);}
+.step-nav .right-group{display:flex;gap:10px;}
+
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--green-950);color:#fff;padding:13px 24px;border-radius:999px;font-size:13.5px;font-weight:700;
+  box-shadow:0 10px 30px -8px rgba(0,0,0,0.4);opacity:0;pointer-events:none;transition:.3s;z-index:200;
+  display:flex;align-items:center;gap:8px;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ---------- Library ---------- */
+.lib-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.lib-tab{
+  background:#fff;border:1.5px solid rgba(10,61,44,0.15);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:700;color:var(--ink-soft);
+}
+.lib-tab.active{background:var(--green-900);color:#fff;border-color:var(--green-900);}
+.lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.lib-card{padding:18px 20px;display:flex;flex-direction:column;gap:10px;}
+.lib-card .lib-num{
+  width:30px;height:30px;border-radius:8px;background:var(--gold);color:var(--green-950);font-weight:900;font-size:12.5px;
+  display:flex;align-items:center;justify-content:center;
+}
+.lib-card h4{font-size:15px;color:var(--green-950);}
+.lib-card .lib-meta{font-size:12px;color:var(--ink-soft);display:flex;gap:10px;flex-wrap:wrap;}
+.lib-card .lib-goal{font-size:13px;color:var(--ink-soft);}
+.lib-card .lib-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{background:var(--paper-dim);color:var(--green-900);font-size:11px;padding:4px 9px;border-radius:999px;font-weight:700;}
+.lib-basic-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:16px;}
+.lib-basic-item{background:#fff;border:1px solid rgba(10,61,44,0.12);border-radius:10px;padding:10px 14px;font-size:13px;display:flex;gap:8px;align-items:center;}
+.lib-basic-item .n{color:var(--gold);font-weight:900;}
+
+/* ---------- Summary / final document ---------- */
+.doc-wrap{padding:32px;}
+.doc-cover{
+  background:linear-gradient(135deg,var(--green-950),var(--green-800));
+  color:#fff;border-radius:var(--radius-md);padding:34px;text-align:center;margin-bottom:30px;
+}
+.doc-cover .k1{color:var(--gold-light);font-weight:800;font-size:13px;letter-spacing:1px;}
+.doc-cover h2{font-size:26px;margin-top:12px;}
+.doc-cover .meta{margin-top:16px;display:flex;justify-content:center;gap:26px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,0.85);}
+.doc-section{margin-bottom:24px;padding:20px 22px;background:#fff;border-radius:var(--radius-md);border:1px solid rgba(10,61,44,0.1);}
+.doc-section h3{font-size:15.5px;color:var(--green-950);display:flex;align-items:center;gap:9px;}
+.doc-section h3 .n{
+  width:26px;height:26px;border-radius:7px;background:var(--green-900);color:#fff;font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+}
+.doc-section .doc-body{margin-top:12px;font-size:13.5px;color:var(--ink-soft);}
+.doc-body table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.6px;}
+.doc-body th{background:var(--paper-dim);padding:7px 9px;text-align:right;font-size:11.8px;}
+.doc-body td{padding:7px 9px;border-bottom:1px solid var(--paper-dim);}
+.doc-empty{color:#b3a98f;font-style:italic;}
+.completion-banner{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  background:var(--green-100);border:1px solid rgba(15,81,56,0.2);border-radius:var(--radius-md);
+  padding:18px 22px;margin-bottom:24px;
+}
+.completion-banner .cb-txt strong{color:var(--green-950);font-size:15px;}
+.completion-banner .cb-txt p{font-size:13px;color:var(--ink-soft);margin-top:4px;}
+.doc-actions{display:flex;gap:10px;flex-wrap:wrap;}
+
+footer.site-footer{
+  background:var(--green-950);color:rgba(255,255,255,0.75);padding:30px 0;margin-top:40px;font-size:12.8px;text-align:center;
+}
+footer.site-footer strong{color:var(--gold-light);}
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+
+/* ---------- Approval / signature block ---------- */
+.doc-approval .approval-grid{display:flex;gap:24px;flex-wrap:wrap;margin-top:14px;}
+.doc-approval .approval-col{flex:1;min-width:220px;}
+.doc-approval .approval-col p{font-size:13.5px;color:var(--ink-soft);margin-bottom:8px;}
+.doc-approval .signature-line{margin-top:30px;border-top:1px solid #b9b195;padding-top:8px;font-size:13px;color:var(--ink-soft);}
+.doc-approval .stamp-box{
+  border:2px dashed #c9c3ad;border-radius:12px;min-height:120px;
+  display:flex;align-items:center;justify-content:center;color:#a39b7f;font-size:13px;font-weight:700;
+}
+.print-toc{display:none;}
+.print-tip{
+  background:#fdf9ec;border:1px solid rgba(201,162,39,.35);border-radius:10px;padding:10px 14px;
+  font-size:12.3px;color:var(--green-900);margin-bottom:18px;display:flex;gap:8px;align-items:flex-start;
+}
+
+@media print{
+  .topbar,.stepper,.hero-cta,.step-nav,.doc-actions,.no-print,footer.site-footer,.completion-banner,.assist-fab,.assist-panel,.print-tip{display:none !important;}
+  body{background:#fff;}
+  .doc-wrap{padding:0;}
+  .doc-section{break-inside:avoid;border:1px solid #ccc;break-before:page;}
+  .doc-section:first-of-type{break-before:auto;}
+  .doc-cover{break-after:page;}
+  .print-toc{display:block;break-after:page;padding:30px 10px;}
+  .wizard-wrap{display:block;padding:0;}
+  .glass{box-shadow:none;background:#fff;}
+  @page{ margin:1.6cm; }
+}
+
+/* ---------- Smart Assistant ---------- */
+.assist-fab{
+  position:fixed;bottom:22px;left:22px;z-index:150;
+  width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  color:var(--green-950);border:none;font-size:26px;
+  box-shadow:0 14px 30px -8px rgba(201,162,39,0.55);
+  display:flex;align-items:center;justify-content:center;
+  animation:assistPulse 3s ease-in-out infinite;
+  transition:.2s;
+}
+.assist-fab:hover{transform:scale(1.06);}
+.assist-fab .badge{
+  position:absolute;top:-4px;right:-4px;background:var(--danger);color:#fff;
+  font-size:10px;font-weight:800;border-radius:50%;width:20px;height:20px;
+  display:flex;align-items:center;justify-content:center;border:2px solid #fff;
+}
+@keyframes assistPulse{
+  0%,100%{box-shadow:0 14px 30px -8px rgba(201,162,39,0.55);}
+  50%{box-shadow:0 14px 34px -6px rgba(201,162,39,0.85);}
+}
+.assist-panel{
+  position:fixed;bottom:0;left:0;z-index:160;
+  width:400px;max-width:94vw;height:min(640px,88vh);
+  background:var(--paper);border-radius:20px 20px 0 0;
+  box-shadow:0 -10px 50px -12px rgba(10,61,44,0.45);
+  display:flex;flex-direction:column;overflow:hidden;
+  border:1px solid rgba(10,61,44,0.12);
+  transform:translateY(110%);transition:transform .32s cubic-bezier(.2,.9,.3,1);
+}
+.assist-panel.open{transform:translateY(0);}
+@media (max-width:460px){.assist-panel{left:0;right:0;width:100%;max-width:100%;border-radius:16px 16px 0 0;margin:0 auto;}}
+.assist-head{
+  background:linear-gradient(135deg,var(--green-950),var(--green-800));color:#fff;
+  padding:16px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+}
+.assist-head .ah-title{display:flex;align-items:center;gap:10px;font-weight:800;font-size:14.5px;}
+.assist-head .ah-title .dot-live{width:8px;height:8px;border-radius:50%;background:#5fd685;box-shadow:0 0 0 3px rgba(95,214,133,.25);}
+.assist-close{background:rgba(255,255,255,0.12);border:none;color:#fff;width:28px;height:28px;border-radius:50%;font-size:15px;}
+.assist-tabs{display:flex;gap:6px;padding:10px 14px 0;flex-shrink:0;}
+.assist-tab{
+  flex:1;background:transparent;border:none;padding:9px 6px;font-size:12px;font-weight:700;color:var(--ink-soft);
+  border-bottom:2px solid transparent;
+}
+.assist-tab.active{color:var(--green-900);border-bottom-color:var(--gold);}
+.assist-body{flex:1;overflow-y:auto;padding:14px 16px 16px;}
+.assist-note{
+  background:var(--green-100);border:1px solid rgba(15,81,56,.15);border-radius:10px;
+  padding:9px 12px;font-size:11.5px;color:var(--green-900);margin-bottom:12px;display:flex;gap:7px;align-items:flex-start;
+}
+.assist-search-row{display:flex;gap:8px;margin-bottom:12px;}
+.assist-search-row input{
+  flex:1;border:1.5px solid rgba(10,61,44,.18);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;
+}
+.assist-search-row button{border:none;background:var(--green-900);color:#fff;border-radius:10px;padding:0 16px;font-weight:700;font-size:13px;}
+.assist-chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.assist-chip{background:#fff;border:1px solid rgba(10,61,44,.15);border-radius:999px;padding:6px 12px;font-size:11.8px;font-weight:700;color:var(--green-900);}
+.assist-result{background:#fff;border:1px solid rgba(10,61,44,.1);border-radius:12px;padding:12px 14px;margin-bottom:10px;}
+.assist-result h5{font-size:13px;color:var(--green-950);display:flex;justify-content:space-between;gap:8px;}
+.assist-result h5 .match{font-size:10px;background:var(--green-100);color:var(--green-800);padding:2px 8px;border-radius:999px;font-weight:800;}
+.assist-result p{font-size:12px;color:var(--ink-soft);margin-top:6px;}
+.assist-result .actions{display:flex;gap:8px;margin-top:10px;}
+.assist-result .actions button{
+  border:none;border-radius:8px;padding:7px 12px;font-size:11.5px;font-weight:700;cursor:pointer;
+}
+.assist-result .actions .primary{background:var(--gold);color:var(--green-950);}
+.assist-result .actions .secondary{background:var(--paper-dim);color:var(--green-900);}
+.assist-empty{text-align:center;padding:30px 10px;color:var(--ink-soft);font-size:13px;}
+.assist-empty .big{font-size:34px;margin-bottom:10px;}
+.assist-help-card{background:#fff;border:1px solid rgba(10,61,44,.1);border-radius:12px;padding:14px;margin-bottom:12px;}
+.assist-help-card h5{font-size:13px;color:var(--green-950);display:flex;align-items:center;gap:7px;}
+.assist-help-card p{font-size:12.3px;color:var(--ink-soft);margin-top:7px;}
+.assist-help-card button{
+  margin-top:10px;background:var(--green-900);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;
+}
+.assist-chatlog{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+.assist-msg{padding:10px 13px;border-radius:12px;font-size:13px;line-height:1.6;max-width:92%;}
+.assist-msg.bot{background:#fff;border:1px solid rgba(10,61,44,.1);align-self:flex-start;color:var(--ink);}
+.assist-msg.user{background:var(--green-900);color:#fff;align-self:flex-end;}
+.assist-chat-input{display:flex;gap:8px;flex-shrink:0;border-top:1px dashed rgba(10,61,44,.15);padding-top:12px;}
+.assist-chat-input input{flex:1;border:1.5px solid rgba(10,61,44,.18);border-radius:999px;padding:10px 16px;font-family:inherit;font-size:13.5px;}
+.assist-chat-input button{border:none;background:var(--gold);color:var(--green-950);border-radius:50%;width:40px;height:40px;font-size:15px;flex-shrink:0;}
+</style>
+</head>
+<body>
+
+<!-- ========================= TOP BAR ========================= -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand" onclick="goHome()" style="cursor:pointer;">
+      <div class="brand-emblem">ز</div>
+      <div class="brand-text">
+        <div class="t1">ديوان قطاع الشباب والرياضة</div>
+        <div class="t2">دليل إعداد المشروع البيداغوجي</div>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div class="progress-pill no-print" id="topProgress">
+        <span id="topProgressLabel">0%</span>
+        <div class="progress-track"><div class="progress-fill" id="topProgressFill" style="width:0%"></div></div>
+      </div>
+      <button class="chip-btn no-print" onclick="showView('home')">🏠 الرئيسية</button>
+      <button class="chip-btn no-print" onclick="showView('projects')">📁 مشاريعي</button>
+      <button class="chip-btn no-print" onclick="showView('wizard')">🧭 المعالج</button>
+      <button class="chip-btn no-print" onclick="showView('library')">📚 بنك الأفكار</button>
+      <button class="chip-btn no-print" onclick="showView('summary')">📄 المشروع النهائي</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<!-- ========================= SMART ASSISTANT ========================= -->
+<button class="assist-fab no-print" id="assistFab" onclick="toggleAssistant()" title="المساعد الذكي">
+  🤖<span class="badge" id="assistBadge" style="display:none;">!</span>
+</button>
+<div class="assist-panel no-print" id="assistPanel">
+  <div class="assist-head">
+    <div class="ah-title"><span class="dot-live"></span> 🤖 المساعد الذكي</div>
+    <button class="assist-close" onclick="toggleAssistant(false)">✕</button>
+  </div>
+  <div class="assist-tabs" id="assistTabs"></div>
+  <div class="assist-body" id="assistBody"></div>
+</div>
+
+
+<!-- ========================= HOME VIEW ========================= -->
+<div id="view-home"></div>
+
+<!-- ========================= PROJECTS (MULTI-PROJECT MANAGER) VIEW ========================= -->
+<div id="view-projects" class="hidden"></div>
+
+<!-- ========================= WIZARD VIEW ========================= -->
+<div id="view-wizard" class="hidden"></div>
+
+<!-- ========================= LIBRARY VIEW ========================= -->
+<div id="view-library" class="hidden"></div>
+
+<!-- ========================= SUMMARY VIEW ========================= -->
+<div id="view-summary" class="hidden"></div>
+
+<footer class="site-footer no-print">
+  <div class="container">
+    لبِنبي صروح الفكر، لا نكن معاول هدم ★ إعداد: ديوان قطاع الشباب والرياضة — دليل رقمي تفاعلي مبني على <strong>سلسلة الإنفوجرافيك المرجعية العلمية والتكوينية للمشروع البيداغوجي</strong> وفق القرار الوزاري رقم 72.
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   DATA LAYER
+===================================================================== */
+
+/* The 11-stage roadmap below is transcribed directly from the reference
+   infographic series (سلسلة الإنفوغرافيك المرجعية العلمية والتكوينية
+   للمشروع البيداغوجي، القرار الوزاري رقم 72), following the exact
+   "المسار الكامل للمشروع البيداغوجي" sequence defined on لوحة رقم 21:
+   التشخيص ← الإشكالية ← الأهداف ← التخطيط ← التنفيذ ← المتابعة ← التقييم
+   ← النتائج ← الأثر ← التوثيق ← الاستدامة. */
+
+const STEPS = [
+{
+  id:'diagnosis', num:1, icon:'🔍', title:'التشخيص وتحليل الاحتياجات',
+  subtitle:'الخطوة الأولى لمشروع بيداغوجي ناجح',
+  objective:'التشخيص الدقيق للواقع وتحديد الحاجات الحقيقية للشباب والمجتمع، باعتباره الأساس لبناء مشروع بيداغوجي ذي أثر وفعالية.',
+  howTo:[
+    'جمع المعطيات: تفكيك المعطيات من مصادر مختلفة، باستعمال أدوات متنوعة وموثوقة (ملاحظة ميدانية، استبيان، مقابلة).',
+    'تحليل الواقع: تحليل المعطيات وتفسيرها، تحديد نقاط القوة ونقاط الضعف، وتحديد فرص التطوير والتحسين.',
+    'تحديد الحاجات: تمييز الحاجات الحقيقية من الظاهرية، ترتيبها حسب الأولوية، وتحديد الفئات الأكثر حاجة.',
+    'صياغة الإشكالية: تحويل الحاجات إلى سؤال رئيسي محوري يكون منطلق المشروع.'
+  ],
+  mistakes:[
+    'الاعتماد على أحكام مسبقة بدلاً من جوانب الواقع الفعلي.',
+    'إهمال إشراك الشباب والشركاء في عملية التشخيص.',
+    'الاكتفاء بمصدر واحد للمعطيات بدل تنويع الأدوات.'
+  ],
+  tips:[
+    'التزم بمبادئ التشخيص الجيد: الشمولية، الموضوعية، المشاركة، الدقة، الواقعية، والانتظام في مراجعة المعطيات.',
+    'استعن بالأسئلة الإرشادية: من هم الشباب المستهدفون؟ ما احتياجاتهم؟ ما الموارد المتاحة؟ ما التحديات الأساسية؟'
+  ],
+  fields:[
+    {id:'diag_target', label:'الفئة المستهدفة ومجال التدخل', type:'text', required:true, placeholder:'مثال: شباب 15-29 سنة منخرطون في مؤسسة الشباب — مجال الثقافة والفنون',
+      example:'شباب من 15 إلى 30 سنة منخرطون في مؤسسة الشباب — مجال الحياة العامة والمواطنة'},
+    {id:'diag_tools', label:'أدوات جمع المعطيات المعتمدة', type:'checklist', required:true, options:[
+      {key:'ملاحظة ميدانية', label:'ملاحظة ميدانية'},{key:'استبيان', label:'استبيان'},{key:'مقابلة', label:'مقابلة'},
+      {key:'ورشات عمل', label:'ورشات عمل'},{key:'تحليل وثائق', label:'تحليل وثائق وتقارير'},{key:'بيانات إحصائية', label:'بيانات إحصائية'}
+    ], example:['استبيان','مقابلة','ملاحظة ميدانية']},
+    {id:'diag_strengths', label:'نقاط القوة في الوضعية الحالية', type:'textarea', required:true, placeholder:'صف نقاط القوة المتوفرة (موارد، كفاءات، فرص...)',
+      example:'وجود فضاء مناسب لعقد الأنشطة داخل المؤسسة، وفريق من المنشطين المتحمسين، وعدد لا بأس به من الشباب المنخرطين المهتمين بالشأن العام.'},
+    {id:'diag_weaknesses', label:'نقاط الضعف والفجوات الملاحظة', type:'textarea', required:true, placeholder:'صف الثغرات والصعوبات الملاحظة في الواقع',
+      example:'ضعف مشاركة الشباب في الأنشطة التطوعية المنظمة، وقلة المبادرات الذاتية، وضعف الوعي بأهمية المشاركة في الشأن المحلي.'},
+    {id:'diag_needs', label:'قائمة الحاجات مرتبة حسب الأولوية', type:'textarea', required:true, placeholder:'اذكر الحاجات الحقيقية المستخلصة من التشخيص، مرتبة من الأهم',
+      example:'1. تعزيز ثقافة المواطنة والانتماء لدى الشباب.\n2. تنظيم مبادرات جماعية فعلية يشارك فيها الشباب بأنفسهم.\n3. ترسيخ قيم المشاركة الإيجابية في الحياة العامة.'}
+  ]
+},
+{
+  id:'problematic', num:2, icon:'❓', title:'الإشكالية التربوية',
+  subtitle:'من تشخيص دقيق إلى إشكالية واضحة وقابلة للمعالجة',
+  objective:'صياغة إشكالية تربوية واضحة ومحددة تعكس فجوة حقيقية بين واقع الشباب وما ينبغي أن يكون، باستعمال أداة "شجرة المشكلات".',
+  howTo:[
+    'حدد المشكلة الرئيسية (الجذع): صف بدقة ما هي الظاهرة أو المشكلة المركزية المطروحة.',
+    'حلل الأسباب المباشرة (الجذور القريبة): ما الأسباب التي تؤدي مباشرة إلى المشكلة؟',
+    'حلل الأسباب غير المباشرة (الجذور العميقة): ما الأسباب الهيكلية أو البعيدة الكامنة وراءها؟',
+    'حدد النتائج والآثار (الأغصان): ما الانعكاسات السلبية الناتجة عن استمرار المشكلة؟',
+    'صغ الإشكالية في شكل سؤال محوري واضح ومركّز يعكس حاجة تربوية حقيقية.'
+  ],
+  mistakes:[
+    'صياغة إشكالية عامة وغير محددة لا تُبنى على تشخيص فعلي.',
+    'الخلط بين الأعراض (النتائج) والأسباب الجذرية للمشكلة.',
+    'إشكالية واسعة لا يمكن معالجتها ضمن حدود مشروع واحد.'
+  ],
+  tips:[
+    'الإشكالية الجيدة: واضحة ومحددة، قابلة للتحليل، منبثقة من الواقع، مرتبطة بالحاجات، وقابلة للحل.',
+    'اجعل الإشكالية منطلق المشروع بأكمله، فهي ما يوجّه صياغة الأهداف لاحقاً.'
+  ],
+  fields:[
+    {id:'prob_main', label:'صياغة الإشكالية التربوية (سؤال محوري)', type:'textarea', required:true, placeholder:'مثال: كيف يمكن تعزيز ثقافة التطوع لدى الشباب داخل المؤسسة؟',
+      example:'كيف يمكن تعزيز قيم المواطنة الفاعلة وتحفيز الشباب على المشاركة الإيجابية في خدمة مجتمعهم داخل مؤسسة الشباب؟'},
+    {id:'prob_direct_causes', label:'الأسباب المباشرة (الجذور القريبة)', type:'textarea', required:true, placeholder:'اذكر الأسباب القريبة المؤدية مباشرة إلى المشكلة',
+      example:'قلة المبادرات التطوعية المنظمة داخل المؤسسة، وضعف تعريف الشباب بآليات المشاركة في الشأن المحلي.'},
+    {id:'prob_deep_causes', label:'الأسباب غير المباشرة (الجذور العميقة)', type:'textarea', required:false, placeholder:'اذكر الأسباب الهيكلية أو البعيدة إن وجدت',
+      example:'ضعف ثقافة العمل التطوعي الجماعي بشكل عام في المحيط الاجتماعي، وغياب قدوات شبابية ملهمة في هذا المجال.'},
+    {id:'prob_effects', label:'النتائج والآثار المترتبة على استمرار المشكلة', type:'textarea', required:true, placeholder:'ما الانعكاسات السلبية على الشباب/المؤسسة/المجتمع؟',
+      example:'ضعف الإحساس بالانتماء لدى الشباب، وتراجع دور المؤسسة في التنمية المحلية، وضياع طاقات شبابية كان يمكن توجيهها بشكل إيجابي.'}
+  ]
+},
+{
+  id:'objectives', num:3, icon:'🎯', title:'صياغة الأهداف وفق نموذج SMART',
+  subtitle:'من تشخيص دقيق إلى أهداف ذكية قابلة للقياس وأثر مستدام',
+  objective:'تحويل الإشكالية التربوية إلى هدف عام وأهداف إجرائية ذكية (SMART): محددة، قابلة للقياس، قابلة للتحقيق، ذات صلة، ومحددة زمنياً.',
+  howTo:[
+    'حدد الهدف العام: النتيجة الكبرى التي يسعى المشروع لتحقيقها استجابة للإشكالية.',
+    'استعمل "شجرة الأهداف": حوّل كل سبب من أسباب المشكلة إلى هدف إيجابي مقابل له.',
+    'صغ كل هدف إجرائي وفق معايير SMART: محدد (Specific)، قابل للقياس (Measurable)، قابل للتحقيق (Achievable)، ذو صلة (Relevant)، محدد زمنياً (Time-bound).',
+    'حدد لكل هدف إجرائي مؤشر إنجاز وقيمة مستهدفة وأجلاً زمنياً واضحاً.'
+  ],
+  mistakes:[
+    'أهداف عامة وغير محددة، أو غير قابلة للقياس بمؤشرات واضحة.',
+    'أهداف غير واقعية أو بعيدة عن الموارد المتاحة.',
+    'عدم ربط الهدف بالإشكالية المطروحة، أو استخدام أكثر من هدف في جملة واحدة.',
+    'غياب الإطار الزمني لتحقيق الهدف.'
+  ],
+  tips:[
+    'ابدأ صياغة الهدف بفعل مضارع دقيق (رفع، تعزيز، تنمية...).',
+    'مثال لهدف ذكي: رفع مستوى مشاركة 100 شاب وشابة في أنشطة المواطنة التطوعية داخل المؤسسة بنسبة 30% خلال السنة التكوينية 2025/2026، عبر برنامج منظم وفعال.'
+  ],
+  fields:[
+    {id:'obj_general', label:'الهدف العام للمشروع', type:'textarea', required:true, placeholder:'صغ الهدف العام المنبثق عن الإشكالية',
+      example:'ترسيخ قيم المواطنة الفاعلة وتحفيز الشباب على المشاركة الإيجابية في خدمة مجتمعهم داخل مؤسسة الشباب.'},
+    {id:'obj_smart', label:'الأهداف الإجرائية (SMART)', type:'group', required:true, minRows:1,
+      columns:[
+        {id:'goal', label:'الهدف الإجرائي', type:'text'},
+        {id:'indicator', label:'مؤشر الإنجاز', type:'text'},
+        {id:'target', label:'القيمة المستهدفة', type:'text'},
+        {id:'deadline', label:'الأجل الزمني', type:'text'}
+      ],
+      example:[
+        {goal:'رفع مستوى مشاركة الشباب في المبادرات التطوعية', indicator:'عدد الشباب المشاركين فعلياً في المبادرات', target:'100 شاب وشابة', deadline:'خلال 6 أشهر من انطلاق المشروع'},
+        {goal:'تنظيم مبادرات مواطنة جماعية داخل المحيط المحلي', indicator:'عدد المبادرات المنفذة', target:'5 مبادرات', deadline:'خلال السنة التكوينية'}
+      ]
+    }
+  ]
+},
+{
+  id:'planning', num:4, icon:'🧩', title:'تصميم الأنشطة والتخطيط',
+  subtitle:'هندسة ذكية لتحقيق الأهداف',
+  objective:'تحويل الأهداف الإجرائية إلى أنشطة تربوية ملموسة، مع تحديد الوسائل والموارد والشركاء والجدولة الزمنية اللازمة لتنفيذها بفعالية.',
+  howTo:[
+    'حدد لكل نشاط: الاسم، الهدف الذي يخدمه، المحتوى والرسائل، الفئة المستهدفة.',
+    'حدد الوسائل والموارد اللازمة: بشرية (أطر، منشطون، متطوعون)، مادية (فضاءات، تجهيزات)، رقمية (منصات، تطبيقات)، ووثائقية.',
+    'حدد الزمن والمكان المناسبين لكل نشاط، وابنِ جدولة زمنية عامة للمشروع (تحديد المدة الإجمالية، توزيع الأنشطة زمنياً، تحديد الفترات الفرعية وتواريخ البداية والنهاية).',
+    'حدد الشركاء والداعمين المحتملين (مؤسسات حكومية، جمعيات، قطاع خاص، خبراء، إعلام)، ووزع الأدوار والمسؤوليات.',
+    'ضع ميزانية تقديرية للموارد المطلوبة ومصادر التمويل الممكنة.'
+  ],
+  mistakes:[
+    'تصميم أنشطة لا تتناسب مع خصائص الفئة المستهدفة.',
+    'إهمال الجانب الزمني وتوفر الموارد الفعلية.',
+    'غياب الشراكات والتنسيق مع الفاعلين المعنيين.',
+    'عدم وجود خطة تقييم واضحة مرفقة بالنشاط.'
+  ],
+  tips:[
+    'رتب الأنشطة حسب الأولوية والأثر المتوقع، ونوّعها لتحقيق مختلف الأهداف.',
+    'كن واقعياً في تقدير الأهداف والموارد، وخطط دائماً لبديل احتياطي.'
+  ],
+  fields:[
+    {id:'plan_activities', label:'خطة الأنشطة', type:'group', required:true, minRows:1,
+      columns:[
+        {id:'name', label:'اسم النشاط', type:'text'},
+        {id:'goal', label:'الهدف من النشاط', type:'text'},
+        {id:'target', label:'الفئة المستهدفة', type:'text'},
+        {id:'when', label:'الزمن والمكان', type:'text'},
+        {id:'partners', label:'الشركاء والداعمون', type:'text'}
+      ],
+      example:[
+        {name:'ورشة تكوينية حول المواطنة والحقوق والواجبات', goal:'تعزيز فهم الشباب لمفهوم المواطنة', target:'30 شاب وشابة', when:'الشهر الأول — قاعة المؤسسة', partners:'الجمعيات المحلية'},
+        {name:'حملة توعية بالشأن العام المحلي', goal:'ترسيخ قيم المشاركة الإيجابية', target:'كل منخرطي المؤسسة', when:'الشهر الثاني — محيط المؤسسة', partners:'البلدية'}
+      ]
+    },
+    {id:'plan_resources', label:'الوسائل والموارد اللازمة (بشرية، مادية، رقمية، وثائقية)', type:'textarea', required:true, placeholder:'صف الموارد اللازمة لتنفيذ الأنشطة',
+      example:'موارد بشرية: منشطون وفريق من الشباب المتطوعين. موارد مادية: قاعة، سبورة، مطبوعات توعوية. موارد رقمية: صفحة تواصل اجتماعي للترويج للأنشطة.'},
+    {id:'plan_budget', label:'الميزانية التقديرية ومصادر التمويل المحتملة', type:'textarea', required:false, placeholder:'قدّر التكلفة الإجمالية وحدد مصادر التمويل (ذاتي، شركاء، دعم مؤسساتي...)',
+      example:'ميزانية تقديرية بسيطة لتغطية المطبوعات والضيافة، تُموَّل ذاتياً من ميزانية المؤسسة مع دعم عيني محتمل من البلدية.'},
+    {id:'plan_duration', label:'المدة الإجمالية للمشروع', type:'text', required:true, placeholder:'مثال: 6 أشهر (قابلة للتجديد)',
+      example:'6 أشهر (قابلة للتجديد)'}
+  ]
+},
+{
+  id:'execution', num:5, icon:'⚙️', title:'تنفيذ المشروع',
+  subtitle:'من التخطيط إلى الإنجاز الفعّال',
+  objective:'تحويل التخطيط الجيد إلى واقع ملموس عبر آليات تنفيذ واضحة، وتشكيل فريق عمل منظم بأدوار ومسؤوليات محددة.',
+  howTo:[
+    'شكّل فريق عمل واضح المهام والمسؤوليات لتنفيذ المشروع.',
+    'حدد خطوات التنفيذ وفق الجدولة الزمنية المعتمدة.',
+    'وزّع الموارد والمهام بشكل عادل بين أعضاء الفريق.',
+    'اعتمد التواصل الفعّال بين أعضاء الفريق، وعبئ ووجّه المستفيدين طوال مراحل الإنجاز.'
+  ],
+  mistakes:[
+    'غياب توزيع واضح للمهام بين أعضاء الفريق.',
+    'ضعف التواصل الداخلي أثناء التنفيذ.',
+    'عدم الالتزام بالجدولة الزمنية المحددة سلفاً.'
+  ],
+  tips:[
+    'كن قدوة في الالتزام والانضباط أثناء التنفيذ.',
+    'مبادئ التنفيذ الناجح: الوضوح في المهام والأدوار، مشاركة فعالة للفريق والمستفيدين، الالتزام بالزمن والجودة، الشفافية في التواصل.'
+  ],
+  fields:[
+    {id:'exec_team', label:'فريق التنفيذ وتوزيع الأدوار', type:'group', required:true, minRows:1,
+      columns:[
+        {id:'name', label:'الاسم / الجهة', type:'text'},
+        {id:'role', label:'الدور والمسؤولية', type:'text'}
+      ],
+      example:[
+        {name:'منسّق المؤسسة', role:'الإشراف العام على المشروع ومتابعة تنفيذه'},
+        {name:'فريق من 5 شباب متطوعين', role:'تنظيم الأنشطة الميدانية والتواصل مع المشاركين'}
+      ]
+    },
+    {id:'exec_comm', label:'آلية التواصل الداخلي بين الفريق', type:'textarea', required:false, placeholder:'مثال: اجتماع أسبوعي، مجموعة تواصل، تقارير دورية...',
+      example:'اجتماع أسبوعي قصير لمتابعة التقدم، ومجموعة تواصل عبر الهاتف لتبادل المستجدات اليومية.'},
+    {id:'exec_mobilize', label:'آلية تعبئة وتوجيه المستفيدين', type:'textarea', required:true, placeholder:'كيف سيتم إعلام وتحفيز الفئة المستهدفة للمشاركة؟',
+      example:'الإعلان عن الأنشطة عبر لوحة إعلانات المؤسسة وصفحة التواصل الاجتماعي، مع دعوة شخصية من المنشطين لأبرز المنخرطين النشطين.'}
+  ]
+},
+{
+  id:'monitoring', num:6, icon:'📡', title:'المتابعة وإدارة المخاطر',
+  subtitle:'المتابعة المستمرة والتعديل والتكييف',
+  objective:'ضمان استدامة النتائج وتطوير الأداء من خلال قياس دقيق ومتابعة مستمرة، مع تحديد المخاطر المحتملة وطرق معالجتها.',
+  howTo:[
+    'تابع سير الأنشطة حسب الخطة، وارصد التقدم نحو تحقيق الأهداف بانتظام.',
+    'حدد مؤشرات متابعة الإنجاز (كمية ونوعية) لكل نشاط أو هدف، مع طريقة القياس وتوقيت المتابعة.',
+    'حلل الفجوات والانحرافات عن الخطة، وأعد ترتيب الأولويات عند الحاجة (دورة PDCA: تخطيط، تنفيذ، تحقق، تحسين).',
+    'حدد المخاطر المحتملة (داخلية وخارجية)، وقيّم درجة احتمال وقوعها وأثرها، وضع إجراءات استجابة للحالات الطارئة.'
+  ],
+  mistakes:[
+    'الاكتفاء بالمتابعة النهائية دون متابعة دورية أثناء التنفيذ.',
+    'غياب مؤشرات دقيقة وقابلة للقياس للمتابعة.',
+    'عدم مراجعة المخاطر بشكل دوري أو غياب خطط بديلة.'
+  ],
+  tips:[
+    'استخدم أدوات متابعة بسيطة وفعالة: بطاقات أداء، لوحات متابعة، تقارير دورية قصيرة.',
+    'وثّق كل خطوة وتعلّم من الأخطاء والتجارب باستمرار.'
+  ],
+  fields:[
+    {id:'mon_indicators', label:'مؤشرات متابعة الإنجاز', type:'group', required:true, minRows:1,
+      columns:[
+        {id:'indicator', label:'المؤشر', type:'text'},
+        {id:'type', label:'نوع المؤشر (كمي/نوعي)', type:'text'},
+        {id:'method', label:'طريقة القياس', type:'text'},
+        {id:'timing', label:'توقيت المتابعة', type:'text'}
+      ],
+      example:[
+        {indicator:'عدد الشباب المشاركين في الأنشطة', type:'كمي', method:'سجل الحضور', timing:'بعد كل نشاط'},
+        {indicator:'مستوى رضا المشاركين', type:'نوعي', method:'استبيان قصير', timing:'شهرياً'}
+      ]
+    },
+    {id:'mon_tools', label:'أدوات المتابعة المعتمدة', type:'checklist', required:false, options:[
+      {key:'بطاقات أداء', label:'بطاقات أداء'},{key:'جداول إنجاز', label:'جداول إنجاز'},{key:'شبكات ملاحظة', label:'شبكات ملاحظة'},
+      {key:'استبيانات قصيرة', label:'استبيانات قصيرة'},{key:'تقارير دورية', label:'تقارير دورية'}
+    ], example:['جداول إنجاز','استبيانات قصيرة']},
+    {id:'mon_risks', label:'سجل المخاطر المحتملة وإجراءات المعالجة', type:'group', required:false, minRows:0,
+      columns:[
+        {id:'risk', label:'الخطر', type:'text'},
+        {id:'level', label:'مستوى الخطر', type:'text'},
+        {id:'action', label:'إجراء المعالجة', type:'text'},
+        {id:'owner', label:'المسؤول', type:'text'}
+      ],
+      example:[
+        {risk:'ضعف إقبال الشباب على المشاركة', level:'متوسط', action:'تكثيف التواصل الشخصي والتحفيز', owner:'منسق المؤسسة'}
+      ]
+    }
+  ]
+},
+{
+  id:'evaluation', num:7, icon:'📊', title:'التقييم',
+  subtitle:'نقيس لنتعلّم.. لنحسّن.. لنحقق الأثر',
+  objective:'حكم منهجي ومستمر على مدى تحقق الأهداف، واستخلاص الدروس لتحسين الأداء وتحقيق أثر تربوي واجتماعي مستدام.',
+  howTo:[
+    'حدد نوع التقييم المعتمد: تقييم قبلي (قبل التنفيذ لتحديد الوضعية الأولية)، تقييم مرحلي/تكويني (أثناء التنفيذ لمتابعة سير الأنشطة)، تقييم نهائي (بعد التنفيذ لقياس مدى تحقق الأهداف).',
+    'اختر أدوات التقييم المناسبة: استبيانات، ملاحظة مباشرة، مقابلات، تحليل مستندات، مجموعات بؤرية.',
+    'ميّز أنواع المؤشرات: مؤشرات الإنجاز (ما تم تنفيذه)، مؤشرات النتائج (التغيرات المباشرة على المستفيدين)، مؤشرات الأثر (التغيير العميق طويل المدى).',
+    'أجب عن الأسئلة الأساسية: ما الذي كنا نريد تحقيقه؟ إلى أي مدى تحقق؟ ما الذي نجح ولماذا؟ ما الدروس المستفادة؟'
+  ],
+  mistakes:[
+    'غياب أهداف ومؤشرات واضحة يُبنى عليها التقييم.',
+    'تقييم الأنشطة بدلاً من تقييم النتائج والأثر الفعلي.',
+    'عدم إشراك المستفيدين في عملية التقييم.'
+  ],
+  tips:[
+    'معايير التقييم الجيد: الوضوح، الملاءمة، المصداقية، الشمولية، الموضوعية، الاستمرارية.',
+    'التقييم ليس نهاية المشروع، بل بداية التحسين المستمر.'
+  ],
+  fields:[
+    {id:'eval_type', label:'نوع/أنواع التقييم المعتمدة', type:'checklist', required:true, options:[
+      {key:'تقييم قبلي', label:'تقييم قبلي'},{key:'تقييم مرحلي (تكويني)', label:'تقييم مرحلي (تكويني)'},{key:'تقييم نهائي', label:'تقييم نهائي'},{key:'تقييم بعدي (الأثر)', label:'تقييم بعدي (الأثر)'}
+    ], example:['تقييم قبلي','تقييم مرحلي (تكويني)','تقييم نهائي']},
+    {id:'eval_tools', label:'أدوات التقييم المستخدمة', type:'checklist', required:true, options:[
+      {key:'استبيانات', label:'استبيانات'},{key:'ملاحظة مباشرة', label:'ملاحظة مباشرة'},{key:'مقابلات', label:'مقابلات'},
+      {key:'تحليل مستندات', label:'تحليل مستندات'},{key:'مجموعات بؤرية', label:'مجموعات بؤرية (Focus Group)'}
+    ], example:['استبيانات','ملاحظة مباشرة']},
+    {id:'eval_questions', label:'أسئلة التقييم الأساسية التي سيجيب عنها المشروع', type:'textarea', required:false, placeholder:'مثال: هل تحقق الهدف العام؟ ما الدروس المستفادة؟',
+      example:'هل تحسّن مستوى مشاركة الشباب في الأنشطة التطوعية فعلاً؟ ما الأنشطة الأكثر إقبالاً ولماذا؟ ما الدروس المستفادة لتطوير النسخة القادمة من المشروع؟'}
+  ]
+},
+{
+  id:'results', num:8, icon:'🏁', title:'النتائج المنتظرة',
+  subtitle:'ماذا سيتغيّر مباشرة بفعل المشروع',
+  objective:'تحديد النتائج المباشرة والمتوسطة المدى المنتظر تحقيقها لدى المستفيدين والمؤسسة نتيجة تنفيذ الأنشطة.',
+  howTo:[
+    'ميّز بين مخرجات المشروع (ما تم إنتاجه من خدمات وأنشطة) ونتائجه (التغيرات الفعلية في المعارف والمهارات والسلوكيات).',
+    'اربط كل نتيجة منتظرة بهدف إجرائي محدد سلفاً.',
+    'صغ النتائج بشكل قابل للملاحظة والقياس لاحقاً أثناء التقييم.'
+  ],
+  mistakes:[
+    'الخلط بين عدد الأنشطة المنفذة والنتائج الفعلية المحققة.',
+    'صياغة نتائج فضفاضة غير قابلة للتحقق منها.'
+  ],
+  tips:[
+    'مثال على نتيجة مباشرة: تحسّن مستوى المعارف والمهارات لدى المشاركين.',
+    'مثال على نتيجة متوسطة المدى: تغيّر ملموس في السلوكيات والمواقف تجاه القيم المستهدفة.'
+  ],
+  fields:[
+    {id:'res_direct', label:'النتائج المباشرة المتوقعة (قصيرة المدى)', type:'textarea', required:true, placeholder:'ما الذي سيتغير مباشرة بعد تنفيذ الأنشطة؟',
+      example:'ازدياد وعي الشباب المشاركين بأهمية المواطنة، وتسجيل 100 شاب وشابة فعلياً في مبادرات تطوعية جديدة.'},
+    {id:'res_medium', label:'النتائج المتوسطة المدى المتوقعة', type:'textarea', required:false, placeholder:'ما التغيرات المنتظرة خلال أشهر بعد المشروع؟',
+      example:'استمرار عدد من الشباب في المبادرة التطوعية الذاتية دون الحاجة لتأطير مباشر من المؤسسة.'}
+  ]
+},
+{
+  id:'impact', num:9, icon:'🌱', title:'الأثر التربوي والاجتماعي',
+  subtitle:'من النتائج إلى الأثر المستدام',
+  objective:'قياس التغيير العميق طويل المدى الذي يحدثه المشروع على حياة الأفراد والمؤسسة والمجتمع.',
+  howTo:[
+    'حدد الأثر المتوقع على ثلاثة مستويات: المستوى الفردي (على الشباب المستفيد)، المستوى المؤسسي (على مؤسسة الشباب)، المستوى المجتمعي (على المحيط المحلي).',
+    'اختر مؤشرات أثر مناسبة لكل مستوى، وميّز بين نتائج قصيرة المدى ومتوسطة المدى وبعيدة المدى (بعد فترة زمنية من انتهاء المشروع).',
+    'استعمل أدوات تقييم الأثر: مقابلات معمقة، ملاحظة ميدانية لتغيرات السلوك، تحليل مستندات، منهجيات متقدمة كالمقارنة (قبل/بعد) عند الإمكان.'
+  ],
+  mistakes:[
+    'الخلط بين النتائج الفورية والأثر الحقيقي الذي يظهر بعد فترة زمنية.',
+    'إغفال قياس الأثر على المدى البعيد بعد انتهاء تنفيذ المشروع مباشرة.'
+  ],
+  tips:[
+    'الأثر الحقيقي يُقاس بعد الأنشطة المنجزة، بالتغيير الإيجابي الذي يبقى في حياة الشباب ومستقبل المجتمع.',
+    'وازن استثمارك في الشباب اليوم لأنه استثمار في حاضر الأمة ومستقبلها.'
+  ],
+  fields:[
+    {id:'imp_individual', label:'الأثر المتوقع على مستوى الفرد (الشاب المستفيد)', type:'textarea', required:true, placeholder:'مثال: تحسن الثقة بالنفس، اكتساب مهارات، تغيّر في السلوك...',
+      example:'تعزيز روح المبادرة والانتماء لدى الشاب، وتطور مهاراته في العمل الجماعي والتواصل.'},
+    {id:'imp_institution', label:'الأثر المتوقع على مستوى المؤسسة', type:'textarea', required:false, placeholder:'مثال: تحسن صورة المؤسسة، تطور الخدمات المقدمة...',
+      example:'تحسّن صورة المؤسسة داخل المحيط المحلي كفاعل حقيقي في التنمية، وبناء علاقة ثقة أقوى مع الشباب المنخرطين.'},
+    {id:'imp_community', label:'الأثر المتوقع على مستوى المجتمع المحلي', type:'textarea', required:true, placeholder:'مثال: الإسهام في التنمية المحلية، تعزيز قيم المواطنة...',
+      example:'الإسهام في حل بعض المشكلات المحلية عبر المبادرات التطوعية، وتعزيز روح المواطنة في الحي أو المدينة.'}
+  ]
+},
+{
+  id:'documentation', num:10, icon:'🗂️', title:'التوثيق التربوي',
+  subtitle:'حفظ التجربة.. توسيع الأثر.. استشراف المستقبل',
+  objective:'بناء الذاكرة الحية للمشروع البيداغوجي، لضمان نقل الخبرة وتطويرها واستدامة أثرها في مؤسسات الشباب والمجتمع.',
+  howTo:[
+    'حدد ما سيتم توثيقه: الأهداف، الأنشطة، الخطط، الموارد والشركاء، الصور والفيديوهات، تقارير المتابعة، نتائج التقييم، والدروس المستفادة.',
+    'اعتمد أدوات ووسائل توثيق موحدة: تقارير كتابية بنماذج موحدة، أرشفة رقمية وسحابية، صور وتسجيلات، قواعد بيانات ولوحات مؤشرات.',
+    'اتبع دورة التوثيق: التجهيز (تحديد ما سيتم توثيقه)، الجمع (جمع البيانات بدقة وانتظام)، التنظيم (تصنيف وترتيب المعطيات)، الحفظ (أرشفة آمنة وسهلة الوصول)، المشاركة (نشر التجربة وتبادل الخبرات)، التطوير (استثمار التوثيق لتحسين المشاريع القادمة).'
+  ],
+  mistakes:[
+    'ضعف ثقافة التوثيق أو عدم انتظام جمع البيانات أولاً بأول.',
+    'ضعف الحفظ والأرشفة، ما يعرض المعطيات للضياع.'
+  ],
+  tips:[
+    'وثّق منذ بداية المشروع وباستمرار، لا في نهايته فقط.',
+    'كن دقيقاً وموضوعياً في التوثيق، واستعمل قوالب ونماذج جاهزة لتسهيل العمل.'
+  ],
+  fields:[
+    {id:'doc_items', label:'عناصر ملف المشروع الموثقة', type:'checklist', required:true, options:[
+      {key:'صور', label:'صور'},{key:'فيديوهات', label:'فيديوهات'},{key:'تقارير متابعة', label:'تقارير متابعة'},
+      {key:'نتائج التقييم', label:'نتائج التقييم'},{key:'قصص نجاح', label:'قصص نجاح'},{key:'شهادات مشاركين', label:'شهادات مشاركين'}
+    ], example:['صور','تقارير متابعة','نتائج التقييم']},
+    {id:'doc_lessons', label:'أهم الدروس المستفادة من التجربة', type:'textarea', required:false, placeholder:'اذكر أبرز الدروس التي يمكن نقلها لتجارب مستقبلية',
+      example:'التواصل الشخصي المباشر أكثر فعالية من الإعلانات المكتوبة في تعبئة الشباب، وينبغي إشراكهم في التخطيط منذ البداية لا الاكتفاء بدعوتهم للمشاركة فقط.'}
+  ]
+},
+{
+  id:'sustainability', num:11, icon:'♻️', title:'الاستدامة',
+  subtitle:'ما يُنجَز اليوم يُبنى عليه غداً',
+  objective:'ضمان استمرارية أثر المشروع البيداغوجي بعد انتهائه الرسمي، من خلال ترسيخ أركان الاستدامة داخل المؤسسة والمجتمع.',
+  howTo:[
+    'اعتمد مبادئ الاستدامة: الاستمرارية (بناء برامج طويلة المدى وقابلة للتجديد)، التشاركية (إشراك الشباب والشركاء في كل المراحل)، الملكية المشتركة (إحساس الجميع بالانتماء للمشروع)، الجودة والابتكار، المرونة، التقييم الدوري.',
+    'اعمل على أركان الاستدامة الخمسة: الموارد البشرية (تكوين وتأهيل الفريق)، الشراكات والتعاون، التمويل المستدام (تنويع المصادر)، البنية التنظيمية (سياسات وأدوار واضحة)، البيئة الداعمة (خلق بيئة محفزة للإبداع والمبادرة).',
+    'ضع خطة استمرارية واضحة توضح كيف سيستمر المشروع أو أثره بعد نهاية التمويل أو الدعم الأولي.'
+  ],
+  mistakes:[
+    'التخطيط لمشروع محدود الأفق دون رؤية لاستمراريته.',
+    'الاعتماد على مصدر تمويل أو دعم وحيد غير مضمون.'
+  ],
+  tips:[
+    'الاستدامة تضمن أن ما أنجزناه اليوم يبقى ينفع غداً، فلنوثق بحكمة ولننبِ مستقبلاً أفضل لشبابنا.'
+  ],
+  fields:[
+    {id:'sus_plan', label:'خطة استمرارية المشروع بعد انتهاء التنفيذ الأولي', type:'textarea', required:true, placeholder:'كيف سيستمر أثر المشروع؟ هل سيتجدد سنوياً أو يتحول لبرنامج دائم؟',
+      example:'تحويل المشروع إلى برنامج سنوي متجدد داخل المؤسسة، مع تكوين نواة دائمة من الشباب المتطوعين قادرة على قيادته ذاتياً في السنوات القادمة.'},
+    {id:'sus_partners', label:'الشراكات الداعمة لاستدامة المشروع', type:'textarea', required:false, placeholder:'اذكر الجهات التي يمكن أن تدعم استمرارية المشروع',
+      example:'البلدية، الجمعيات المحلية العاملة في مجال المواطنة، ومديرية الشباب والرياضة للولاية.'},
+    {id:'sus_funding', label:'مصادر التمويل المستقبلية المحتملة', type:'textarea', required:false, placeholder:'مثال: دعم مؤسساتي، شراكات، مبادرات ذاتية...',
+      example:'ميزانية المؤسسة السنوية المخصصة للأنشطة، مع دعم عيني محتمل من شركاء محليين.'}
+  ]
+}
+];
+
+/* =====================================================================
+   LIBRARY DATA — "بنك مشاريع النوادي الجاهزة" (لوحات 38 إلى 63)
+===================================================================== */
+const LIBRARY_FULL = [
+ {num:38, title:'نادي المواطنة الفاعلة', domain:'الحياة العامة والمواطنة', target:'15-30 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'ترسيخ قيم المواطنة الفاعلة وتحفيز الشباب على المشاركة الإيجابية في خدمة المجتمع.',
+  activities:['ورشات تكوينية حول المواطنة والحقوق والواجبات','حملات توعية بالشأن العام المحلي','مبادرات محلية لدعم المواطنة التطوعية'],
+  indicators:['عدد الشباب المشاركين','عدد الورشات واللقاءات المنفذة','عدد المبادرات المحلية المطلقة']},
+ {num:39, title:'نادي البيئة والتنمية المستدامة', domain:'البيئة والتنمية المستدامة', target:'12-29 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'رفع الوعي البيئي لدى الشباب وتشجيع الممارسات الصديقة للبيئة ومساهمتها في التنمية المستدامة.',
+  activities:['حملات تشجير وتنظيف المساحات الطبيعية','ورشات إعادة تدوير وتصنيع منتجات صديقة للبيئة','زيارات ميدانية للمحميات الطبيعية'],
+  indicators:['عدد الأشجار المزروعة','كمية النفايات المعاد تدويرها','عدد الحملات البيئية المنظمة']},
+ {num:40, title:'نادي الثقافة الرقمية', domain:'الثقافة والإعلام والاتصال', target:'15-30 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تنمية الثقافة الرقمية لدى الشباب وحمايتهم من المخاطر الرقمية وبناء مواطنة رقمية مسؤولة.',
+  activities:['ورشات حول الأمن الرقمي وحماية المعطيات الشخصية','مسابقات إبداعية في المحتوى الرقمي','تدريب على أدوات الذكاء الاصطناعي وأخلاقياته'],
+  indicators:['عدد المشاركين في الورشات','عدد الأنشطة والمنتجات الرقمية المنجزة']},
+ {num:41, title:'نادي القراءة والإبداع الثقافي', domain:'الثقافة والإعلام والاتصال', target:'15-30 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تعزيز مهارات القراءة والإبداع لدى الشباب وترسيخ حب المطالعة كأسلوب حياة مثقف.',
+  activities:['نادي كتاب لمناقشة القراءات الدورية','ورشات كتابة إبداعية وشعر','معارض للكتاب ومسابقات ثقافية'],
+  indicators:['عدد الكتب المقروءة والمناقشة','عدد المشاركين في الأنشطة الثقافية']},
+ {num:42, title:'نادي التطوع والعمل الجمعوي', domain:'المواطنة والتضامن الاجتماعي', target:'15-29 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'ترسيخ ثقافة التطوع والعمل الجمعوي لدى الشباب وتعزيز روح المبادرة الجماعية.',
+  activities:['تشكيل مجموعات تطوعية دائمة','تنظيم حملات تضامنية وإنسانية','ورشات حول إدارة العمل الجمعوي'],
+  indicators:['عدد المتطوعين النشطين','عدد المبادرات التطوعية المنفذة']},
+ {num:43, title:'نادي الإعلام والاتصال الشبابي', domain:'الإعلام والاتصال', target:'15-29 سنة', duration:'—',
+  goal:'تنمية مهارات الشباب في الإعلام والتواصل وصناعة المحتوى الهادف وتوثيق أنشطة المؤسسة.',
+  activities:['إعداد مجلة شبابية دورية','إنشاء إذاعة داخل المؤسسة','ورشات تصوير وتوثيق وإنتاج ريبورتاجات قصيرة'],
+  indicators:['عدد المواد الإعلامية المنتجة','عدد الشباب المشاركين','مستوى التفاعل مع المحتوى المنشور']},
+ {num:44, title:'نادي القيادة والتمكين الشبابي', domain:'القيادة والمبادرة وتنمية الذات', target:'—', duration:'—',
+  goal:'إعداد قيادات شبابية فاعلة تمتلك المهارات القيادية والشخصية، قادرة على المبادرة والتأثير وصناعة القرار.',
+  activities:['محاكاة المجالس والبرلمانات الشبابية','ورشات ومهارات إدارة الفرق','تطوير المبادرات وإدارة المشاريع الصغيرة'],
+  indicators:['عدد الشباب المشاركين في الأنشطة القيادية','عدد المبادرات والفرق الشبابية المتشكلة']},
+ {num:45, title:'نادي الحوار والمناظرات الشبابية', domain:'القيادة والتمكين الشبابي', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تنمية مهارات الحوار والتفكير النقدي لدى الشباب، وتعزيز ثقافة الاختلاف واحترام الرأي الآخر.',
+  activities:['ورشات تدريبية في مهارات الحوار والإقناع','تنظيم مسابقات ومناظرات حول قضايا شبابية','محاكاة برلمانية ونماذج أممية'],
+  indicators:['عدد الشباب المشاركين','عدد المناظرات والأنشطة المنفذة']},
+ {num:46, title:'نادي القيادة والتمكين الشبابي (نسخة تكميلية)', domain:'القيادة والمبادرة وتنمية الذات', target:'—', duration:'—',
+  goal:'تنمية قدرات الشباب القيادية وتعزيز روح المبادرة والعمل الجماعي لتمكينهم من صناعة التغيير الإيجابي.',
+  activities:['ورشات تدريبية في القيادة الفعالة','أنشطة تقوية الثقة بالنفس والتواصل','محاكاة المجالس والبرلمانات الشبابية'],
+  indicators:['عدد الشباب المشاركين','عدد الأنشطة القيادية المنفذة']},
+ {num:47, title:'نادي اللغات والتواصل الدولي', domain:'الثقافة والانفتاح', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تنمية مهارات الشباب في اللغات الأجنبية وتعزيز الانفتاح على الثقافات والتواصل والتعاون الدولي.',
+  activities:['دورات في اللغات الأجنبية','محادثة وتبادل لغوي بين الشباب','أيام ثقافية دولية للتعرف على ثقافات الشعوب'],
+  indicators:['عدد الشباب المشاركين','عدد اللغات المدروسة','عدد الأنشطة المنجزة']},
+ {num:48, title:'نادي التراث الثقافي', domain:'الثقافة والتراث', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تعزيز ارتباط الشباب بتراثهم الثقافي وحمايته ونقله للأجيال القادمة عبر التعرف عليه والإعتزاز به وإحيائه.',
+  activities:['ورشات التعريف بالتراث المادي واللامادي','زيارات ميدانية للمواقع الأثرية والمتاحف','معارض للصور والمقتنيات التراثية'],
+  indicators:['عدد الأنشطة المنفذة','عدد المشاركين في الأنشطة','مستوى الوعي بالتراث لدى الشباب']},
+ {num:49, title:'نادي الصحة والرياضة', domain:'الصحة والرياضة وجودة الحياة', target:'15-29 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تعزيز الوعي الصحي لدى الشباب وتنمية اللياقة البدنية والمهارات الرياضية وترسيخ ثقافة الحياة الصحية المتوازنة.',
+  activities:['حصص رياضية متنوعة (كرة قدم، كرة سلة، ألعاب قوى)','ورشات توعية صحية (تغذية، نظافة، وقاية)','تنظيم بطولات ودوريات داخل المؤسسة'],
+  indicators:['عدد الشباب المشاركين','عدد الأنشطة المنفذة','تحسن اللياقة البدنية لدى المشاركين']},
+ {num:50, title:'نادي المقاولاتية والابتكار', domain:'ريادة الأعمال والتمكين الاقتصادي', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تنمية روح المبادرة لدى الشباب وتحفيزهم على ابتكار أفكار ومشاريع صغيرة ومرافقتهم لاكتساب المهارات اللازمة لإنشاء مشاريع ناجحة ومستدامة.',
+  activities:['ورشات تكوين في ريادة الأعمال وإعداد الدراسة الأولية للمشاريع','توليد الأفكار الإبداعية وحاضنات للمشاريع','زيارات ميدانية لمؤسسات ومساحات عمل ناشئة'],
+  indicators:['عدد الشباب المشاركين','عدد المشاريع والأفكار المطورة','عدد المشاريع المنجزة']},
+ {num:51, title:'نادي الأمن الرقمي', domain:'الأمن الرقمي وحماية المعطيات', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تعزيز الثقافة الرقمية الآمنة لدى الشباب وتنمية المهارات اللازمة لحماية البيانات والمعلومات والتصدي للمخاطر والتهديدات السيبرانية.',
+  activities:['ورشات حول الأمن السيبراني وحماية المعطيات الشخصية','تدريب عملي حول كلمات المرور القوية وتوثيق الحسابات','محاكاة لهجمات إلكترونية وألعاب أمنية (Capture The Flag)'],
+  indicators:['عدد الشباب المشاركين','عدد الأنشطة المنفذة','مستوى المعرفة بالأمن الرقمي قبل وبعد المشاركة']},
+ {num:52, title:'نادي الابتكار العلمي', domain:'العلوم والابتكار', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تنمية روح البحث والاكتشاف لدى الشباب، وتحفيزهم على الابتكار العلمي وتطوير مهارات التفكير النقدي وحل المشكلات من خلال التجارب والمشاريع العلمية.',
+  activities:['تجارب علمية في الفيزياء والكيمياء والبيولوجيا والعلوم البيئية','ورشات تصميم النماذج الأولية (Prototyping) والابتكار','مسابقات ومعارض للابتكار العلمي داخل المؤسسة وخارجها'],
+  indicators:['عدد الشباب المشاركين','عدد التجارب والمشاريع العلمية المنجزة','عدد الورشات والأنشطة المنفذة']},
+ {num:53, title:'نادي البيئة والتنمية المستدامة (نسخة تكميلية)', domain:'البيئة والتنمية المستدامة', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تعزيز الوعي البيئي لدى الشباب وتنمية السلوكيات الصديقة للبيئة، والمساهمة في حماية الموارد الطبيعية ودعم التنمية المستدامة في المجتمع.',
+  activities:['ورشات توعوية حول حماية البيئة والتغير المناخي','حملات تشجير وتنظيف الأحياء والمساحات الطبيعية','إعادة تدوير وتصنيع منتجات صديقة للبيئة'],
+  indicators:['عدد الشباب المشاركين','عدد الأشجار المزروعة','كمية النفايات المعاد تدويرها']},
+ {num:54, title:'نادي الطاقة المتجددة والابتكار الأخضر', domain:'البيئة والطاقة', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'نشر ثقافة الطاقة المتجددة، وتحفيز الشباب على ابتكار حلول نظيفة ومستدامة، والمساهمة في حماية البيئة وبناء مستقبل أخضر.',
+  activities:['ورشات توعية حول مصادر الطاقة المتجددة','بناء نماذج مصغرة للطاقة الشمسية وطاقة الرياح','حملات ترشيد استهلاك الطاقة وإعادة التدوير'],
+  indicators:['عدد الشباب المشاركين','عدد الأنشطة المنفذة','عدد النماذج والحلول المبتكرة']},
+ {num:55, title:'نادي الروبوتيك والذكاء الاصطناعي', domain:'التكنولوجيا والابتكار الرقمي', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تنمية مهارات الشباب في البرمجة والروبوتيك والذكاء الاصطناعي، وتمكينهم من ابتكار حلول ذكية تخدم المجتمع وتواكب التحول الرقمي.',
+  activities:['ورشات تعلم البرمجة (سكراتش، بايثون)','تصميم وبرمجة روبوتات ذكية','مشاريع تطبيقية في الذكاء الاصطناعي ومسابقات وتحديات روبوتيك'],
+  indicators:['عدد الشباب المشاركين','عدد الورشات المنفذة','عدد الروبوتات والمشاريع المنجزة']},
+ {num:56, title:'نادي الفنون والإبداع الشبابي', domain:'الثقافة والفنون', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'صقل مواهب الشباب في مختلف الفنون، وترسيخ الإبداع والابتكار الفني، وجعل التعبير الفني وسيلة للتنمية الشخصية والتواصل الثقافي وبناء الهوية.',
+  activities:['ورشات في المسرح، الرسم، الموسيقى، الكتابة الإبداعية والتصوير الفوتوغرافي','إنتاج أعمال فنية جماعية ومعارض داخل المؤسسة وخارجها','مهرجانات فنية شبابية ومسابقات للإبداع'],
+  indicators:['عدد الشباب المشاركين','عدد الورشات والأنشطة المنفذة','عدد الأعمال الفنية المنتجة']},
+ {num:57, title:'نادي التراث الثقافي (نسخة تكميلية)', domain:'الثقافة والتراث', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'التعريف بالتراث الثقافي الوطني والمحلي، والحفاظ عليه، ونقله للأجيال، من خلال أنشطة تربوية وتوعوية تعزز الاعتزاز بالهوية والانتماء.',
+  activities:['زيارات ميدانية للمواقع والمتاحف الأثرية','ورشات بحث وجمع الوثائق والروايات الشعبية','معارض للصور والوثائق والحرف التقليدية'],
+  indicators:['عدد الشباب المشاركين','عدد الزيارات الميدانية','عدد المنتجات التراثية المعروضة أو الموثقة']},
+ {num:58, title:'نادي الصحة والرفاه الشبابي', domain:'الصحة والرفاه الشبابي', target:'15-35 سنة', duration:'6 أشهر (قابلة للتجديد)',
+  goal:'تعزيز صحة الشباب الجسدية والنفسية والاجتماعية، وترسيخ ثقافة الوقاية ونمط الحياة الصحي بما يساهم في بناء جيل نشيط سليم ومنتج.',
+  activities:['ورشات توعوية حول التغذية السليمة والوقاية من الأمراض','جلسات رياضية منتظمة (جري، لياقة بدنية، يوغا، زومبا...)','حملات إسعافات أولية وسلامة يومية'],
+  indicators:['عدد الأعضاء المشاركين','عدد الورشات والأنشطة المنفذة','نسبة المشاركة في الأنشطة']},
+ {num:59, title:'نادي الرياضة للجميع', domain:'الصحة والرياضة', target:'12-35 سنة', duration:'سنة كاملة (قابلة للتجديد)',
+  goal:'ترسيخ ثقافة ممارسة الرياضة لجميع فئات الشباب، من أجل تحسين الصحة البدنية واللياقة، وبناء نمط حياة نشيط ومتوازن.',
+  activities:['بطولات ودوريات رياضية (كرة القدم، الكرة الطائرة...)','حصص رياضية ترفيهية منتظمة (جري، لياقة بدنية...)','أيام رياضية مفتوحة ومسابقات ومهرجانات رياضية'],
+  indicators:['عدد الأعضاء المسجلين في النادي','عدد الأنشطة الرياضية المنفذة','نسبة المشاركة في الأنشطة']},
+ {num:60, title:'نادي الأمن والسلامة والوقاية', domain:'الأمن والسلامة والوقاية', target:'12-35 سنة', duration:'6 أشهر إلى سنة (قابلة للتجديد)',
+  goal:'ترسيخ ثقافة الأمن والسلامة والوقاية لدى الشباب، وتزويدهم بالمعارف والمهارات اللازمة للتعامل السليم مع المخاطر والطوارئ، وحماية الأرواح والممتلكات.',
+  activities:['ورشات الإسعافات الأولية والإنعاش القلبي الرئوي','محاكاة الإخلاء أثناء الطوارئ (زلازل، حرائق...)','دورات استعمال أجهزة الحماية المنزلية والمرورية'],
+  indicators:['عدد الشباب المنخرطين في النادي','عدد الورشات والدورات المنجزة','عدد المستفيدين من التكوينات']},
+ {num:61, title:'نادي الأمن الرقمي والمواطنة الرقمية', domain:'الأمن الرقمي والمواطنة الرقمية', target:'12-35 سنة', duration:'3 إلى 6 أشهر (قابلة للتجديد)',
+  goal:'تعزيز الوعي الرقمي لدى الشباب وتمكينهم من استعمال آمن ومسؤول للتكنولوجيا، وحماية معطياتهم وحقوقهم في الفضاء الرقمي.',
+  activities:['ورشات حماية الحسابات وكلمات المرور القوية','التوعية بالاحتيال الإلكتروني والهندسة الاجتماعية','مناقشات حول أخلاقيات الذكاء الاصطناعي'],
+  indicators:['عدد الأعضاء المسجلين في النادي','عدد الورشات والدورات المنفذة','نسبة تحسن المعرفة الرقمية للأعضاء']},
+ {num:62, title:'نادي ديوان المبادرات الشبابية', domain:'المبادرة والابتكار الاجتماعي', target:'15-35 سنة', duration:'3 إلى 6 أشهر (قابلة للتجديد)',
+  goal:'تحفيز الشباب على التفكير الإبداعي وصناعة المبادرات، وتطوير مهاراتهم في تحديد المشكلات واقتراح الحلول وتصميم المشاريع وتنفيذها.',
+  activities:['ورشات التفكير الإبداعي وتوليد الأفكار','دورات حول كتابة مقترحات المشاريع','لقاءات مع مبادرين وأصحاب شخصيات ملهمة'],
+  indicators:['عدد الأفكار والمشاريع المقترحة','عدد المبادرات المنفذة','عدد المستفيدين من مبادرات النادي']},
+ {num:63, title:'نادي الابتكار الاجتماعي', domain:'الابتكار الاجتماعي', target:'15-35 سنة', duration:'3 إلى 12 شهر (قابلة للتجديد)',
+  goal:'تمكين الشباب من ابتكار وتطوير حلول إبداعية ومستدامة للمشكلات الاجتماعية والبيئية والاقتصادية في مجتمعهم، وتحويلها إلى مشاريع ذات أثر ملموس.',
+  activities:['ورشات التفكير التصميمي وحل المشكلات الاجتماعية','تحديات "هاكاثون" للمشاريع الاجتماعية الناجعة','زيارات ميدانية لمبادرات ومشاريع ناجحة'],
+  indicators:['عدد الأفكار والمشاريع المقترحة','عدد المبادرات المنفذة','عدد المستفيدين من المشاريع']}
+];
+
+/* لوحات 64 إلى 75: أفكار أندية إضافية إرشادية (عناوين عامة فقط، تُعرض
+   كإلهام أولي دون تفاصيل جدولية كاملة). */
+const LIBRARY_BASIC = [
+ {num:64, title:'نادي المقاولاتية الشبابية'},
+ {num:65, title:'نادي الثقافة المالية (الادخار والتخطيط المالي)'},
+ {num:66, title:'نادي الصحافة والإذاعة الشبابية'},
+ {num:67, title:'نادي الذكاء الاصطناعي من أجل المستقبل'},
+ {num:68, title:'نادي المسرح'},
+ {num:69, title:'نادي الوعي البيئي والابتكار'},
+ {num:70, title:'نادي علوم الفضاء والفلك'},
+ {num:71, title:'نادي الابتكار الصناعي وريادة الأعمال'},
+ {num:72, title:'نادي ريادة الأعمال والمشاريع المبتكرة'},
+ {num:73, title:'نادي قانون العمل (اعرف حقك وأدِّ واجبك)'},
+ {num:74, title:'نادي الأشغال اليدوية'},
+ {num:75, title:'نادي الموسيقى والإيقاع'}
+];
+
+/* =====================================================================
+   GLOSSARY — شرح مبسّط لأهم مصطلحات منهجية المشروع البيداغوجي، موجّه
+   لمستعمل يعدّ مشروعه لأول مرة.
+===================================================================== */
+const GLOSSARY = [
+  {term:'المشروع البيداغوجي', def:'تصور متكامل ومنهجي يستجيب لحاجة حقيقية لدى الشباب، ويحدد أهدافاً تربوية واضحة، ويحققها عبر أنشطة مخططة ضمن مدة زمنية محددة، بهدف إحداث أثر إيجابي ومستدام.'},
+  {term:'التشخيص', def:'الخطوة الأولى: معاينة الواقع بدقة (من خلال ملاحظة، استبيان، مقابلة...) لمعرفة ما هي الحاجات الحقيقية للشباب المستهدفين قبل التخطيط لأي نشاط.'},
+  {term:'الإشكالية التربوية', def:'سؤال محوري واحد وواضح يلخّص المشكلة أو الفجوة التي اكتشفتها في التشخيص، ويكون منطلقاً لكل ما يليه من أهداف وأنشطة. مثال: «كيف يمكن تعزيز ثقافة التطوع لدى الشباب داخل المؤسسة؟»'},
+  {term:'شجرة المشكلات', def:'أداة تحليل بسيطة على شكل شجرة: الجذع هو المشكلة الرئيسية، الجذور هي الأسباب (مباشرة وغير مباشرة)، والأغصان هي النتائج والآثار المترتبة على استمرار المشكلة.'},
+  {term:'شجرة الأهداف', def:'نفس فكرة شجرة المشكلات لكن بصيغة إيجابية: كل سبب من أسباب المشكلة يتحول إلى هدف نسعى لتحقيقه، وكل نتيجة سلبية تتحول إلى أثر إيجابي منشود.'},
+  {term:'SMART', def:'معيار لصياغة هدف جيد: محدد (Specific)، قابل للقياس (Measurable)، قابل للتحقيق (Achievable)، ذو صلة بالإشكالية (Relevant)، ومحدد بمدة زمنية (Time-bound). مثال: «رفع مشاركة 100 شاب في أنشطة التطوع بنسبة 30% خلال 6 أشهر».'},
+  {term:'الهدف العام', def:'النتيجة الكبرى والشاملة التي يسعى المشروع بأكمله لتحقيقها، وتنبثق مباشرة من الإشكالية. تُفصَّل بعده أهداف إجرائية أصغر وأدق (SMART).'},
+  {term:'الهدف الإجرائي', def:'هدف فرعي دقيق وقابل للقياس ينبثق من الهدف العام، ويصاغ وفق معايير SMART مع تحديد مؤشر وقيمة مستهدفة وأجل زمني.'},
+  {term:'مؤشر الإنجاز', def:'رقم أو معطى ملموس يُستعمل لقياس مدى تحقق هدف أو نشاط معيّن، مثل «عدد المشاركين» أو «نسبة الرضا» أو «عدد الورشات المنفذة».'},
+  {term:'الفئة المستهدفة', def:'مجموعة الشباب الذين يوجَّه لهم المشروع تحديداً (مثلاً: شباب 15-29 سنة منخرطون في مؤسسة الشباب)، ويُحدَّدون بدقة أثناء مرحلة التشخيص.'},
+  {term:'الأنشطة', def:'الأفعال الملموسة والمحددة زمنياً (ورشة، لقاء، حملة، مسابقة...) التي تُنفَّذ لتحقيق الأهداف الإجرائية للمشروع.'},
+  {term:'البرنامج', def:'مجموعة أنشطة مترابطة ومنظمة ضمن إطار زمني محدد لتحقيق هدف مشترك؛ يقع بين النشاط الواحد والمشروع المتكامل من حيث الحجم والمدة.'},
+  {term:'الشركاء والداعمون', def:'الجهات (مؤسسات حكومية، جمعيات، قطاع خاص، خبراء، إعلام) التي تساهم بموارد أو خبرة أو دعم لوجستي في إنجاح المشروع.'},
+  {term:'مخطط غانت (Gantt)', def:'أداة تخطيط زمني بصرية تُظهر تواريخ بداية ونهاية كل نشاط ومدى تقدمه، مما يسهّل متابعة الالتزام بالجدولة الزمنية للمشروع.'},
+  {term:'الإطار المنطقي', def:'أداة تخطيط تربط بشكل منظم بين الهدف العام، الأهداف الخاصة، النتائج المتوقعة، الأنشطة، والمؤشرات، ضمن جدول واحد شامل.'},
+  {term:'دورة PDCA', def:'دورة تحسين مستمر من 4 خطوات: خطّط (Plan)، نفّذ (Do)، تحقّق (Check)، حسّن (Act)، تُستعمل أثناء متابعة المشروع لتصحيح المسار أولاً بأول.'},
+  {term:'إدارة المخاطر', def:'تحديد المشاكل المحتملة التي قد تعرقل المشروع (داخلية أو خارجية) مسبقاً، وتقييم احتمال وقوعها وحجم تأثيرها، ووضع إجراءات للتعامل معها قبل حدوثها.'},
+  {term:'التقييم القبلي', def:'تقييم يُجرى قبل انطلاق تنفيذ المشروع، لتحديد الوضعية الأولية للفئة المستهدفة قبل أي تدخل.'},
+  {term:'التقييم المرحلي (التكويني)', def:'تقييم يُجرى أثناء تنفيذ المشروع لمتابعة سير الأنشطة وتصحيح المسار في الوقت المناسب، بدل انتظار النهاية.'},
+  {term:'التقييم النهائي', def:'تقييم يُجرى بعد انتهاء تنفيذ الأنشطة مباشرة، لقياس مدى تحقق الأهداف الإجرائية المحددة في البداية.'},
+  {term:'مؤشرات الإنجاز', def:'تقيس ما تم تنفيذه فعلياً من الأنشطة والبرامج (مثل: عدد الورشات المنفذة)، وهي أول مستوى من مستويات القياس.'},
+  {term:'مؤشرات النتائج', def:'تقيس التغيرات المباشرة التي حصلت لدى المستفيدين بعد الأنشطة (تحسّن المعارف، تغيّر السلوك...)، وهي المستوى الثاني بعد مؤشرات الإنجاز.'},
+  {term:'الأثر', def:'التغيير العميق وطويل المدى الذي يُحدثه المشروع في حياة الأفراد والمؤسسة والمجتمع، ويظهر عادة بعد فترة زمنية من انتهاء الأنشطة، لا مباشرة بعدها.'},
+  {term:'الاستدامة', def:'ضمان استمرار أثر المشروع بعد انتهائه رسمياً، عبر تنويع مصادر التمويل والشراكات، وبناء ملكية مشتركة للمشروع بين الشباب والمؤسسة.'},
+  {term:'التوثيق التربوي', def:'حفظ كل معطيات المشروع (أهداف، أنشطة، صور، تقارير، دروس مستفادة) بشكل منظم، لنقل التجربة والاستفادة منها في مشاريع لاحقة.'},
+  {term:'تحليل SWOT', def:'أداة تحليل تفحص أربعة عناصر: نقاط القوة (Strengths) ونقاط الضعف (Weaknesses) الداخلية، والفرص (Opportunities) والتهديدات (Threats) الخارجية.'},
+  {term:'مجموعة التركيز (Focus Group)', def:'نقاش جماعي منظم مع عدد صغير من المستفيدين لاستخلاص آرائهم المعمقة حول موضوع معين، يُستعمل في التشخيص أو التقييم.'}
+];
+
+/* =====================================================================
+   STATE MANAGEMENT — multi-project support.
+   Each project is stored under its own localStorage key; an index lists
+   all saved projects (id, name, last update, used for the "مشاريعي" view).
+   Legacy single-project data (from earlier versions of this file) is
+   migrated automatically into the new scheme on first load.
+===================================================================== */
+const LEGACY_STORAGE_KEY = 'zawan_bidaghoji_project_v1';
+const PROJECTS_INDEX_KEY = 'zawan_projects_index_v1';
+const ACTIVE_PROJECT_KEY = 'zawan_active_project_id_v1';
+function projectStateKey(id){ return 'zawan_project_' + id; }
+
+const defaultState = {
+  meta:{ projectName:'', institution:'', club:'', dateCreated:'', responsibleName:'', responsibleRole:'', approvalDate:'' },
+  answers:{},          // fieldId -> value
+  completedSteps:[],   // array of step ids fully valid
+  currentStep:0,
+  visited:[0]
+};
+
+function genId(){
+  return 'p_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,7);
+}
+function loadProjectsIndex(){
+  try{ return JSON.parse(localStorage.getItem(PROJECTS_INDEX_KEY)) || []; }catch(e){ return []; }
+}
+function saveProjectsIndex(idx){
+  localStorage.setItem(PROJECTS_INDEX_KEY, JSON.stringify(idx));
+}
+function migrateLegacyIfNeeded(){
+  const idx = loadProjectsIndex();
+  if(idx.length>0) return;
+  const legacyRaw = localStorage.getItem(LEGACY_STORAGE_KEY);
+  if(!legacyRaw) return;
+  try{
+    const legacyState = JSON.parse(legacyRaw);
+    const id = genId();
+    localStorage.setItem(projectStateKey(id), JSON.stringify(legacyState));
+    const name = (legacyState.meta && legacyState.meta.projectName && legacyState.meta.projectName.trim()) || 'مشروعي الأول';
+    saveProjectsIndex([{id, name, updatedAt: Date.now()}]);
+    localStorage.setItem(ACTIVE_PROJECT_KEY, id);
+    localStorage.removeItem(LEGACY_STORAGE_KEY);
+  }catch(e){ /* ignore corrupt legacy data */ }
+}
+function ensureActiveProject(){
+  migrateLegacyIfNeeded();
+  let idx = loadProjectsIndex();
+  let activeId = localStorage.getItem(ACTIVE_PROJECT_KEY);
+  if(!activeId || !idx.find(p=>p.id===activeId)){
+    if(idx.length>0){
+      activeId = idx[0].id;
+    } else {
+      activeId = genId();
+      localStorage.setItem(projectStateKey(activeId), JSON.stringify(defaultState));
+      idx = [{id:activeId, name:'مشروع بيداغوجي جديد', updatedAt: Date.now()}];
+      saveProjectsIndex(idx);
+    }
+    localStorage.setItem(ACTIVE_PROJECT_KEY, activeId);
+  }
+  return activeId;
+}
+
+let activeProjectId = null;
+
+function loadState(){
+  activeProjectId = ensureActiveProject();
+  try{
+    const raw = localStorage.getItem(projectStateKey(activeProjectId));
+    const parsed = raw ? JSON.parse(raw) : {};
+    return Object.assign(JSON.parse(JSON.stringify(defaultState)), parsed, {
+      meta: Object.assign({}, defaultState.meta, parsed.meta || {})
+    });
+  }catch(e){ return JSON.parse(JSON.stringify(defaultState)); }
+}
+function saveState(){
+  localStorage.setItem(projectStateKey(activeProjectId), JSON.stringify(state));
+  const idx = loadProjectsIndex();
+  const name = (state.meta.projectName && state.meta.projectName.trim()) || 'مشروع بدون عنوان';
+  const entry = idx.find(p=>p.id===activeProjectId);
+  if(entry){ entry.name = name; entry.updatedAt = Date.now(); }
+  else { idx.push({id:activeProjectId, name, updatedAt: Date.now()}); }
+  saveProjectsIndex(idx);
+}
+function resetState(){
+  state = JSON.parse(JSON.stringify(defaultState));
+  saveState();
+}
+
+let state = loadState();
+
+/* ---------- Project switching / management ---------- */
+function switchToProject(id){
+  if(id===activeProjectId) return;
+  saveState();
+  activeProjectId = id;
+  localStorage.setItem(ACTIVE_PROJECT_KEY, id);
+  state = loadState();
+  recomputeCompleted();
+  toast('تم فتح المشروع', '📂');
+  showView('wizard');
+}
+function confirmCreateProject(){
+  const nameInput = document.getElementById('newProjectNameInput');
+  const name = (nameInput && nameInput.value.trim()) || 'مشروع بيداغوجي جديد';
+  saveState();
+  const id = genId();
+  const st = JSON.parse(JSON.stringify(defaultState));
+  st.meta.projectName = name;
+  localStorage.setItem(projectStateKey(id), JSON.stringify(st));
+  const idx = loadProjectsIndex();
+  idx.push({id, name, updatedAt: Date.now()});
+  saveProjectsIndex(idx);
+  activeProjectId = id;
+  localStorage.setItem(ACTIVE_PROJECT_KEY, id);
+  state = loadState();
+  recomputeCompleted();
+  showNewProjectForm = false;
+  toast('تم إنشاء مشروع جديد', '✨');
+  showView('wizard');
+}
+let showNewProjectForm = false;
+function toggleNewProjectForm(){ showNewProjectForm = !showNewProjectForm; renderNewProjectForm(); }
+function cancelNewProject(){ showNewProjectForm = false; renderNewProjectForm(); }
+function duplicateProject(id){
+  const raw = localStorage.getItem(projectStateKey(id));
+  if(!raw) return;
+  const st = JSON.parse(raw);
+  const newId = genId();
+  st.meta.projectName = ((st.meta && st.meta.projectName) || 'مشروع') + ' (نسخة)';
+  localStorage.setItem(projectStateKey(newId), JSON.stringify(st));
+  const idx = loadProjectsIndex();
+  idx.push({id:newId, name: st.meta.projectName, updatedAt: Date.now()});
+  saveProjectsIndex(idx);
+  toast('تم إنشاء نسخة من المشروع', '📄');
+  renderProjects();
+}
+function deleteProjectConfirm(id){
+  const idx = loadProjectsIndex();
+  const entry = idx.find(p=>p.id===id);
+  if(!confirm('سيتم حذف المشروع «' + (entry?entry.name:'') + '» نهائياً من هذا الجهاز. هل تريد المتابعة؟')) return;
+  localStorage.removeItem(projectStateKey(id));
+  const newIdx = idx.filter(p=>p.id!==id);
+  saveProjectsIndex(newIdx);
+  if(id===activeProjectId){
+    if(newIdx.length>0){
+      activeProjectId = null;
+      switchToProject(newIdx[0].id);
+    } else {
+      localStorage.removeItem(ACTIVE_PROJECT_KEY);
+      activeProjectId = null;
+      state = loadState();
+      recomputeCompleted();
+    }
+  }
+  toast('تم حذف المشروع', '🗑️');
+  renderProjects();
+}
+
+/* =====================================================================
+   UTIL
+===================================================================== */
+function esc(str){
+  if(str===undefined || str===null) return '';
+  return String(str).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function toast(msg, icon){
+  const t = document.getElementById('toast');
+  t.innerHTML = (icon||'✅') + ' <span>'+esc(msg)+'</span>';
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+function overallProgress(){
+  return Math.round((state.completedSteps.length / STEPS.length) * 100);
+}
+function updateTopProgress(){
+  const p = overallProgress();
+  document.getElementById('topProgressLabel').textContent = p+'%';
+  document.getElementById('topProgressFill').style.width = p+'%';
+}
+function isStepComplete(step){
+  return state.completedSteps.includes(step.id);
+}
+function isStepUnlocked(index){
+  if(index===0) return true;
+  const prev = STEPS[index-1];
+  return isStepComplete(prev) || state.visited.includes(index);
+}
+function stepStatus(step){
+  if(isStepComplete(step)) return 'done';
+  const hasAny = step.fields.some(f=>{
+    const v = state.answers[f.id];
+    if(f.type==='group') return (v||[]).some(r=>Object.values(r).some(x=>x && String(x).trim()!==''));
+    if(f.type==='checklist') return v && v.length>0;
+    return v && String(v).trim()!=='';
+  });
+  return hasAny ? 'partial' : 'empty';
+}
+function openStepDirectly(index){
+  if(!state.visited.includes(index)) state.visited.push(index);
+  state.currentStep = index;
+  saveState();
+  showView('wizard');
+}
+function validateStep(step){
+  let ok = true;
+  const missing = [];
+  step.fields.forEach(f=>{
+    if(!f.required) return;
+    const val = state.answers[f.id];
+    if(f.type==='group'){
+      const rows = val || [];
+      const hasValidRow = rows.some(r => Object.values(r).some(v=>v && String(v).trim()!==''));
+      if(!hasValidRow){ ok=false; missing.push(f.label); }
+    } else if(f.type==='checklist'){
+      if(!val || val.length===0){ ok=false; missing.push(f.label); }
+    } else {
+      if(!val || String(val).trim()===''){ ok=false; missing.push(f.label); }
+    }
+  });
+  return {ok, missing};
+}
+function recomputeCompleted(){
+  state.completedSteps = STEPS.filter(s=>validateStep(s).ok).map(s=>s.id);
+}
+
+/* =====================================================================
+   VIEW SWITCHING
+===================================================================== */
+function showView(name){
+  ['home','wizard','library','summary','projects'].forEach(v=>{
+    document.getElementById('view-'+v).classList.toggle('hidden', v!==name);
+  });
+  if(name==='wizard') renderWizard();
+  if(name==='library') renderLibrary();
+  if(name==='summary') renderSummary();
+  if(name==='home') renderHome();
+  if(name==='projects') renderProjects();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function goHome(){ showView('home'); }
+function startWizard(){
+  showView('wizard');
+}
+
+/* =====================================================================
+   HOME VIEW
+===================================================================== */
+function renderHome(){
+  const p = overallProgress();
+  const resumeBtn = p>0 ? `<button class="btn btn-ghost" onclick="startWizard()">↩️ متابعة مشروعي (${p}% مكتمل)</button>` : '';
+  document.getElementById('view-home').innerHTML = `
+  <div class="container hero">
+    <span class="hero-badge">📘 سلسلة إنفوجرافيك مرجعية علمية وتكوينية — القرار الوزاري رقم 72</span>
+    <h1>دليلك الرقمي التفاعلي لإعداد <span>المشروع البيداغوجي</span> خطوة بخطوة</h1>
+    <p class="lead">أداة عمل ميدانية لمديري المؤسسات والمنشطين والمفتشين، تحوّل منهجية "مدونة نشاطات مؤسسات الشباب" إلى معالج تفاعلي يرافقك من التشخيص إلى الاستدامة، لتخرج في النهاية بمشروع بيداغوجي كامل وجاهز للطباعة.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary" onclick="startWizard()">🚀 ابدأ إعداد المشروع البيداغوجي</button>
+      <button class="btn btn-gold" onclick="showView('library')">📚 تصفح بنك الأفكار الجاهزة</button>
+      ${resumeBtn}
+    </div>
+
+    <div class="legal-strip">
+      <div class="glass legal-card">
+        <div class="ic">⚖️</div>
+        <h4>المرجع القانوني</h4>
+        <p>يستند هذا الدليل بالكامل إلى سلسلة الإنفوجرافيك المرجعية العلمية والتكوينية للمشروع البيداغوجي، الصادرة في إطار القرار الوزاري رقم 72، دون خروج عن تسلسلها أو محتواها.</p>
+      </div>
+      <div class="glass legal-card">
+        <div class="ic">📖</div>
+        <h4>مدونة نشاطات مؤسسات الشباب</h4>
+        <p>وثيقة مرجعية وطنية تضبط مجالات وأنواع البرامج والأنشطة المسموح بها داخل مؤسسات الشباب، وتوجه العمل الشبابي نحو تحقيق أهداف تربوية وتنموية مستدامة.</p>
+      </div>
+      <div class="glass legal-card">
+        <div class="ic">🧭</div>
+        <h4>المشروع البيداغوجي</h4>
+        <p>تصور متكامل ومنهجي يستجيب لحاجات حقيقية، ويستهدف تحقيق أهداف تربوية محددة عبر أنشطة مخططة، من أجل إحداث أثر إيجابي ومستدام في الشباب والمجتمع.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="section-head">
+      <div class="eyebrow">لوحة المتابعة</div>
+      <h2>حالة مشروعك الحالي: ${esc(state.meta.projectName) || 'مشروع بدون عنوان'}</h2>
+      <p>نظرة سريعة على تقدمك في كل مرحلة — اضغط على أي مرحلة متاحة للانتقال إليها مباشرة. لإدارة أكثر من مشروع، توجّه إلى <a href="#" onclick="showView('projects');return false;" style="color:var(--blue);font-weight:700;">📁 مشاريعي</a>.</p>
+    </div>
+    <div class="dash-track">
+      ${STEPS.map((s,i)=>{
+        const status = stepStatus(s);
+        const locked = !isStepUnlocked(i) && status!=='done';
+        return `<div class="dash-step dash-${status}${locked?' dash-locked':''}" onclick="${locked?'':`openStepDirectly(${i})`}" title="${esc(s.title)}">
+          <div class="dash-icon">${status==='done' ? '✓' : (locked ? '🔒' : s.icon)}</div>
+          <div class="dash-lbl">${s.num}. ${esc(s.title)}</div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="section-head">
+      <div class="eyebrow">المسار الكامل</div>
+      <h2>11 خطوة مترابطة من التشخيص إلى الاستدامة</h2>
+      <p>يحوّل المعالج كل مرحلة من مراحل الإنفوجرافيك إلى صفحة عمل مستقلة، بنفس الترتيب المعتمد في الملف المرجعي، مع شرح الهدف والخطوات والأخطاء الشائعة والنصائح العملية، ثم الحقول اللازمة لبناء مشروعك.</p>
+    </div>
+    <div class="grid-3">
+      ${STEPS.map(s=>`
+        <div class="glass info-card">
+          <div class="num">${String(s.num).padStart(2,'0')}</div>
+          <h4>${s.icon} ${esc(s.title)}</h4>
+          <p>${esc(s.subtitle)}</p>
+        </div>
+      `).join('')}
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="glass" style="padding:30px 34px;">
+      <div class="section-head" style="margin-bottom:16px;">
+        <div class="eyebrow">مزايا الدليل</div>
+        <h2>كل ما تحتاجه لإنجاز مشروع بيداغوجي منهجي</h2>
+      </div>
+      <div class="grid-3">
+        <div class="info-card" style="padding:14px 0;"><h4>💾 حفظ تلقائي</h4><p>يُحفظ عملك محلياً في متصفحك فور الكتابة، دون الحاجة لإنترنت أو خادم.</p></div>
+        <div class="info-card" style="padding:14px 0;"><h4>🔓 تنقل حر</h4><p>عدّل أي مرحلة سابقة في أي وقت، وتنقّل بين المراحل المفتوحة بحرية.</p></div>
+        <div class="info-card" style="padding:14px 0;"><h4>✅ تحقق من البيانات</h4><p>تنبيه فوري عند نقص الحقول الأساسية قبل الانتقال للمرحلة التالية.</p></div>
+        <div class="info-card" style="padding:14px 0;"><h4>🖨️ طباعة وتصدير PDF</h4><p>مشروعك النهائي جاهز للطباعة أو التصدير كملف PDF عبر نافذة الطباعة.</p></div>
+        <div class="info-card" style="padding:14px 0;"><h4>📤 تصدير JSON / HTML</h4><p>احفظ نسخة من مشروعك لاستكمال العمل لاحقاً على أي جهاز.</p></div>
+        <div class="info-card" style="padding:14px 0;"><h4>♻️ إعادة الضبط</h4><p>ابدأ مشروعاً جديداً من الصفر بضغطة زر، مع تأكيد قبل الحذف.</p></div>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+/* =====================================================================
+   WIZARD VIEW
+===================================================================== */
+function renderWizard(){
+  updateTopProgress();
+  const idx = state.currentStep;
+  const step = STEPS[idx];
+
+  const stepperHtml = STEPS.map((s,i)=>{
+    const done = isStepComplete(s);
+    const active = i===idx;
+    const locked = !isStepUnlocked(i) && !done;
+    let cls = 'step-item';
+    if(done) cls+=' done';
+    if(active) cls+=' active';
+    if(locked) cls+=' locked';
+    return `<li class="${cls}" onclick="${locked?'':'jumpToStep('+i+')'}">
+      <div class="dot">${done?'✓':(s.num)}</div>
+      <div class="lbl">${esc(s.title)}</div>
+    </li>`;
+  }).join('');
+
+  document.getElementById('view-wizard').innerHTML = `
+  <div class="container wizard-wrap">
+    <nav class="glass stepper no-print">
+      <h3>مسار المشروع البيداغوجي</h3>
+      <ul class="stepper-list">${stepperHtml}</ul>
+      <div style="padding:14px 8px 4px;border-top:1px dashed rgba(10,61,44,.15);margin-top:10px;">
+        <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;" onclick="confirmReset()">♻️ إعادة الضبط</button>
+      </div>
+    </nav>
+
+    <div class="glass step-panel" id="stepPanel"></div>
+  </div>
+  `;
+  renderStepPanel(step, idx);
+  refreshAssistantIfOpen();
+}
+function refreshAssistantIfOpen(){
+  if(typeof assistState!=='undefined' && assistState.open) renderAssistant();
+}
+
+function jumpToStep(i){
+  if(!state.visited.includes(i)) state.visited.push(i);
+  state.currentStep = i;
+  saveState();
+  renderWizard();
+}
+
+function renderStepPanel(step, idx){
+  const panel = document.getElementById('stepPanel');
+  const mistakesList = step.mistakes.map(m=>`<li>${esc(m)}</li>`).join('');
+  const tipsList = step.tips.map(m=>`<li>${esc(m)}</li>`).join('');
+  const howToList = step.howTo.map(m=>`<li>${esc(m)}</li>`).join('');
+
+  panel.innerHTML = `
+    <div class="step-header">
+      <div class="step-kicker"><span class="circle">${step.num}</span> المرحلة ${step.num} من ${STEPS.length}</div>
+      <h2>${step.icon} ${esc(step.title)}</h2>
+      <div class="subtitle">${esc(step.subtitle)}</div>
+    </div>
+
+    <div class="ref-box tip" style="margin-bottom:22px;">
+      <h5>🎯 الهدف من المرحلة</h5>
+      <p style="font-size:13.5px;color:var(--ink-soft);margin-top:8px;">${esc(step.objective)}</p>
+    </div>
+
+    <div class="ref-grid">
+      <div class="ref-box">
+        <h5>🛠️ كيفية الإنجاز</h5>
+        <ul>${howToList}</ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="ref-box warn">
+          <h5>⚠️ أخطاء شائعة يجب تجنبها</h5>
+          <ul>${mistakesList}</ul>
+        </div>
+        <div class="ref-box tip">
+          <h5>💡 نصائح عملية</h5>
+          <ul>${tipsList}</ul>
+        </div>
+      </div>
+    </div>
+
+    <form id="stepForm" onsubmit="return false;">
+      ${step.fields.map(f=>renderField(f)).join('')}
+    </form>
+
+    <div class="step-nav">
+      <button class="btn btn-ghost" ${idx===0?'disabled':''} onclick="prevStep()">→ المرحلة السابقة</button>
+      <div class="right-group">
+        <button class="btn btn-ghost btn-sm" onclick="saveDraftManually()">💾 حفظ المسودة</button>
+        ${idx===STEPS.length-1
+          ? `<button class="btn btn-primary" onclick="finishWizard()">إنهاء وعرض المشروع النهائي ✅</button>`
+          : `<button class="btn btn-primary" onclick="nextStep()">المرحلة التالية ←</button>`}
+      </div>
+    </div>
+  `;
+  attachFieldListeners(step);
+}
+
+/* ---------- Field rendering ---------- */
+function renderField(f){
+  const val = state.answers[f.id];
+  const reqMark = f.required ? '<span class="required-mark">*</span>' : '';
+  let inner = '';
+  if(f.type==='text'){
+    inner = `<input type="text" data-field="${f.id}" placeholder="${esc(f.placeholder||'')}" value="${esc(val||'')}">`;
+  } else if(f.type==='textarea'){
+    inner = `<textarea data-field="${f.id}" placeholder="${esc(f.placeholder||'')}">${esc(val||'')}</textarea>`;
+  } else if(f.type==='checklist'){
+    inner = `<div class="checklist" data-field="${f.id}">` + f.options.map(o=>{
+      const checked = (val||[]).includes(o.key);
+      return `<label class="chk-opt${checked?' checked':''}"><input type="checkbox" value="${esc(o.key)}" ${checked?'checked':''}> ${esc(o.label)}</label>`;
+    }).join('') + `</div>`;
+  } else if(f.type==='group'){
+    inner = renderGroupField(f, val || []);
+  }
+  const exampleHtml = f.example!==undefined ? renderFieldExample(f) : '';
+  return `<div class="form-block" data-block="${f.id}">
+    <label>${esc(f.label)} ${reqMark}</label>
+    ${inner}
+    <div class="error-msg" data-error="${f.id}">هذا الحقل أساسي لإكمال هذه المرحلة.</div>
+    ${exampleHtml}
+  </div>`;
+}
+
+function renderFieldExample(f){
+  let content = '';
+  if(f.type==='text' || f.type==='textarea'){
+    content = esc(f.example).replace(/\n/g,'<br>');
+  } else if(f.type==='checklist'){
+    content = f.example.map(k=>{
+      const opt = f.options.find(o=>o.key===k);
+      return '✔ ' + esc(opt ? opt.label : k);
+    }).join('<br>');
+  } else if(f.type==='group'){
+    content = `<table><thead><tr>${f.columns.map(c=>`<th>${esc(c.label)}</th>`).join('')}</tr></thead>
+      <tbody>${f.example.map(r=>`<tr>${f.columns.map(c=>`<td>${esc(r[c.id]||'—')}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  }
+  return `<div class="field-example">
+    <button type="button" class="example-toggle" onclick="toggleFieldExample('${f.id}')">💡 عرض مثال توضيحي</button>
+    <div class="example-box hidden" id="example-${f.id}">
+      <div class="ex-content">${content}</div>
+      <button type="button" class="use-example-btn" onclick="useFieldExample('${f.id}')">استخدام هذا المثال</button>
+    </div>
+  </div>`;
+}
+
+function renderGroupField(f, rows){
+  if(!rows || rows.length===0) rows = [ emptyGroupRow(f) ];
+  const theadCols = f.columns.map(c=>`<th>${esc(c.label)}</th>`).join('') + '<th style="width:36px;"></th>';
+  const tbodyRows = rows.map((row,ri)=>{
+    const tds = f.columns.map(c=>`<td><input type="text" data-grp="${f.id}" data-row="${ri}" data-col="${c.id}" value="${esc(row[c.id]||'')}"></td>`).join('');
+    return `<tr>${tds}<td><button type="button" class="rm-row" onclick="removeGroupRow('${f.id}', ${ri})" title="حذف السطر">×</button></td></tr>`;
+  }).join('');
+
+  const cardsHtml = rows.map((row,ri)=>{
+    const fields = f.columns.map(c=>`<div class="gc-field"><label>${esc(c.label)}</label><input type="text" data-grp="${f.id}" data-row="${ri}" data-col="${c.id}" value="${esc(row[c.id]||'')}"></div>`).join('');
+    return `<div class="group-card">${fields}<button type="button" class="btn btn-ghost btn-sm" onclick="removeGroupRow('${f.id}', ${ri})">حذف هذا السطر ×</button></div>`;
+  }).join('');
+
+  return `<div class="group-field" data-group="${f.id}">
+    <table><thead><tr>${theadCols}</tr></thead><tbody>${tbodyRows}</tbody></table>
+    <div class="group-cards">${cardsHtml}</div>
+    <button type="button" class="add-row-btn" onclick="addGroupRow('${f.id}')">➕ إضافة سطر جديد</button>
+  </div>`;
+}
+function emptyGroupRow(f){
+  const r = {}; f.columns.forEach(c=>r[c.id]=''); return r;
+}
+function currentStepFieldDef(fieldId){
+  const step = STEPS[state.currentStep];
+  return step.fields.find(f=>f.id===fieldId);
+}
+function addGroupRow(fieldId){
+  const f = currentStepFieldDef(fieldId);
+  if(!state.answers[fieldId] || state.answers[fieldId].length===0) state.answers[fieldId]=[emptyGroupRow(f)];
+  state.answers[fieldId].push(emptyGroupRow(f));
+  saveState();
+  rerenderCurrentStepPreserveScroll();
+}
+function removeGroupRow(fieldId, rowIndex){
+  if(!state.answers[fieldId]) return;
+  state.answers[fieldId].splice(rowIndex,1);
+  saveState();
+  rerenderCurrentStepPreserveScroll();
+}
+function rerenderCurrentStepPreserveScroll(){
+  const y = window.scrollY;
+  renderStepPanel(STEPS[state.currentStep], state.currentStep);
+  window.scrollTo(0,y);
+}
+
+/* ---------- Field listeners ---------- */
+function attachFieldListeners(step){
+  step.fields.forEach(f=>{
+    if(f.type==='text' || f.type==='textarea'){
+      const el = document.querySelector(`[data-field="${f.id}"]`);
+      if(el) el.addEventListener('input', ()=>{
+        state.answers[f.id] = el.value;
+        saveState();
+        clearFieldError(f.id);
+      });
+    } else if(f.type==='checklist'){
+      const wrap = document.querySelector(`.checklist[data-field="${f.id}"]`);
+      if(wrap){
+        wrap.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+          cb.addEventListener('change', ()=>{
+            let arr = state.answers[f.id] || [];
+            if(cb.checked){ if(!arr.includes(cb.value)) arr.push(cb.value); }
+            else { arr = arr.filter(v=>v!==cb.value); }
+            state.answers[f.id] = arr;
+            saveState();
+            cb.closest('.chk-opt').classList.toggle('checked', cb.checked);
+            clearFieldError(f.id);
+          });
+        });
+      }
+    } else if(f.type==='group'){
+      document.querySelectorAll(`[data-grp="${f.id}"]`).forEach(inp=>{
+        inp.addEventListener('input', ()=>{
+          const ri = +inp.dataset.row, ci = inp.dataset.col;
+          if(!state.answers[f.id]) state.answers[f.id] = [emptyGroupRow(f)];
+          if(!state.answers[f.id][ri]) state.answers[f.id][ri] = emptyGroupRow(f);
+          state.answers[f.id][ri][ci] = inp.value;
+          saveState();
+          clearFieldError(f.id);
+        });
+      });
+    }
+  });
+}
+function clearFieldError(fieldId){
+  const block = document.querySelector(`[data-block="${fieldId}"]`);
+  if(!block) return;
+  block.querySelector('.error-msg')?.classList.remove('show');
+  block.querySelectorAll('.field-error').forEach(e=>e.classList.remove('field-error'));
+}
+
+/* ---------- Navigation ---------- */
+function nextStep(){
+  const step = STEPS[state.currentStep];
+  const v = validateStep(step);
+  if(!v.ok){
+    v.missing.forEach(()=>{});
+    step.fields.forEach(f=>{
+      if(!f.required) return;
+      const val = state.answers[f.id];
+      let bad=false;
+      if(f.type==='group'){ bad = !(val||[]).some(r=>Object.values(r).some(x=>x&&String(x).trim()!=='')); }
+      else if(f.type==='checklist'){ bad = !val || val.length===0; }
+      else { bad = !val || String(val).trim()===''; }
+      if(bad){
+        const block = document.querySelector(`[data-block="${f.id}"]`);
+        block?.querySelector('.error-msg')?.classList.add('show');
+      }
+    });
+    toast('يرجى استكمال الحقول الأساسية قبل المتابعة', '⚠️');
+    const firstErr = document.querySelector('.error-msg.show');
+    if(firstErr && typeof firstErr.scrollIntoView === 'function') firstErr.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+  recomputeCompleted();
+  const nextIdx = Math.min(state.currentStep+1, STEPS.length-1);
+  if(!state.visited.includes(nextIdx)) state.visited.push(nextIdx);
+  state.currentStep = nextIdx;
+  saveState();
+  renderWizard();
+  toast('تم حفظ المرحلة والانتقال للمرحلة التالية');
+}
+function prevStep(){
+  state.currentStep = Math.max(0, state.currentStep-1);
+  saveState();
+  renderWizard();
+}
+function saveDraftManually(){
+  saveState();
+  toast('تم حفظ المسودة محلياً على هذا الجهاز', '💾');
+}
+function finishWizard(){
+  const step = STEPS[state.currentStep];
+  const v = validateStep(step);
+  if(!v.ok){ nextStep(); return; }
+  recomputeCompleted();
+  saveState();
+  showView('summary');
+}
+function confirmReset(){
+  if(confirm('سيتم حذف جميع بيانات المشروع الحالي نهائياً من هذا الجهاز. هل تريد المتابعة؟')){
+    resetState();
+    toast('تمت إعادة ضبط المشروع', '♻️');
+    showView('home');
+  }
+}
+
+/* =====================================================================
+   PROJECTS (MULTI-PROJECT MANAGER) VIEW
+===================================================================== */
+function renderProjects(){
+  document.getElementById('view-projects').innerHTML = `
+  <div class="container section">
+    <div class="section-head">
+      <div class="eyebrow">إدارة المشاريع</div>
+      <h2>مشاريعي البيداغوجية</h2>
+      <p>يمكنك إنشاء أكثر من مشروع بيداغوجي والتنقل بينها بحرية؛ يُحفظ كل مشروع بشكل مستقل على هذا الجهاز، دون الحاجة لإنترنت.</p>
+    </div>
+    <button class="btn btn-primary" style="margin-bottom:20px;" onclick="toggleNewProjectForm()">➕ إنشاء مشروع جديد</button>
+    <div id="newProjectFormWrap"></div>
+    <div class="grid-3" id="projectsGrid"></div>
+  </div>
+  `;
+  renderNewProjectForm();
+  paintProjectsGrid();
+}
+function renderNewProjectForm(){
+  const wrap = document.getElementById('newProjectFormWrap');
+  if(!wrap) return;
+  wrap.innerHTML = showNewProjectForm ? `
+    <div class="glass" style="padding:20px 22px;margin-bottom:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;">
+      <div class="form-block" style="flex:1;min-width:220px;margin-bottom:0;">
+        <label>اسم المشروع الجديد</label>
+        <input type="text" id="newProjectNameInput" placeholder="مثال: مشروع نادي البيئة 2026">
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="confirmCreateProject()">إنشاء</button>
+      <button class="btn btn-ghost btn-sm" onclick="cancelNewProject()">إلغاء</button>
+    </div>` : '';
+}
+function paintProjectsGrid(){
+  const grid = document.getElementById('projectsGrid');
+  if(!grid) return;
+  const idx = loadProjectsIndex().slice().sort((a,b)=>b.updatedAt-a.updatedAt);
+  if(idx.length===0){
+    grid.innerHTML = `<div class="assist-empty" style="grid-column:1/-1;"><div class="big">📁</div>لا توجد مشاريع محفوظة بعد. أنشئ أول مشروع لك من الزر أعلاه.</div>`;
+    return;
+  }
+  grid.innerHTML = idx.map(p=>{
+    let completion = 0;
+    try{
+      const st = JSON.parse(localStorage.getItem(projectStateKey(p.id)) || '{}');
+      completion = Math.round(((st.completedSteps||[]).length / STEPS.length) * 100);
+    }catch(e){}
+    const isActive = p.id===activeProjectId;
+    let dateStr = '—';
+    try{ dateStr = new Date(p.updatedAt).toLocaleDateString('ar-DZ', {year:'numeric', month:'short', day:'numeric'}); }catch(e){}
+    return `<div class="glass info-card" style="${isActive?'border:2px solid var(--gold);':''}">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;">
+        <span class="tag">${completion}% مكتمل</span>
+        ${isActive?'<span class="tag" style="background:var(--gold);color:var(--green-950);">المشروع الحالي</span>':''}
+      </div>
+      <h4 style="margin-top:10px;">${esc(p.name)}</h4>
+      <p style="font-size:12px;color:var(--ink-soft);margin-top:6px;">آخر تعديل: ${dateStr}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;">
+        ${isActive ? '' : `<button class="btn btn-primary btn-sm" onclick="switchToProject('${p.id}')">فتح</button>`}
+        <button class="btn btn-ghost btn-sm" onclick="duplicateProject('${p.id}')">تكرار</button>
+        <button class="btn btn-ghost btn-sm" style="color:var(--danger);" onclick="deleteProjectConfirm('${p.id}')">حذف</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* =====================================================================
+   LIBRARY VIEW — بنك مشاريع النوادي الجاهزة
+===================================================================== */
+let libFilter = 'all';
+function renderLibrary(){
+  const domains = ['all', ...new Set(LIBRARY_FULL.map(x=>x.domain))];
+  document.getElementById('view-library').innerHTML = `
+  <div class="container section">
+    <div class="section-head">
+      <div class="eyebrow">بنك مشاريع النوادي الجاهزة</div>
+      <h2>${LIBRARY_FULL.length + LIBRARY_BASIC.length} فكرة مشروع بيداغوجي جاهزة للاستلهام</h2>
+      <p>نماذج تطبيقية جاهزة منقولة عن سلسلة الإنفوجرافيك المرجعية، يمكن استعمالها كنقطة انطلاق سريعة، ثم إكمال بقية المراحل عبر المعالج التفاعلي بما يلائم واقع مؤسستك.</p>
+    </div>
+    <div class="lib-filter no-print">
+      ${domains.map(d=>`<button class="lib-tab ${libFilter===d?'active':''}" onclick="setLibFilter('${esc(d).replace(/'/g,"\\'")}')">${d==='all'?'الكل':esc(d)}</button>`).join('')}
+    </div>
+    <div class="lib-grid" id="libGrid"></div>
+
+    <div class="section-head" style="margin-top:44px;">
+      <div class="eyebrow">أفكار إضافية للإلهام</div>
+      <h2>عناوين مشاريع أخرى من السلسلة</h2>
+      <p>عناوين أندية إضافية واردة في الملف المرجعي، تصلح كأفكار انطلاق يمكن تطويرها بالكامل عبر المعالج التفاعلي.</p>
+    </div>
+    <div class="lib-basic-list">
+      ${LIBRARY_BASIC.map(b=>`<div class="lib-basic-item"><span class="n">${b.num}</span> ${esc(b.title)}</div>`).join('')}
+    </div>
+  </div>
+  `;
+  paintLibGrid();
+}
+function setLibFilter(d){ libFilter = d; renderLibrary(); }
+function paintLibGrid(){
+  const grid = document.getElementById('libGrid');
+  const items = LIBRARY_FULL.filter(x=> libFilter==='all' || x.domain===libFilter);
+  grid.innerHTML = items.map(x=>`
+    <div class="glass lib-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="lib-num">${x.num}</div>
+        <span class="tag">${esc(x.domain)}</span>
+      </div>
+      <h4>${esc(x.title)}</h4>
+      <div class="lib-meta"><span>👥 ${esc(x.target)}</span><span>⏱️ ${esc(x.duration)}</span></div>
+      <p class="lib-goal">${esc(x.goal)}</p>
+      <div class="lib-tags">${x.activities.slice(0,2).map(a=>`<span class="tag">${esc(a.slice(0,28))}${a.length>28?'…':''}</span>`).join('')}</div>
+      <button class="btn btn-ghost btn-sm no-print" onclick='useLibraryIdea(${x.num})'>✨ استلهم هذه الفكرة كنقطة انطلاق</button>
+    </div>
+  `).join('');
+}
+function useLibraryIdea(num){
+  const idea = LIBRARY_FULL.find(x=>x.num===num);
+  if(!idea) return;
+  const hasDataAlready = state.answers['diag_target'] || state.answers['obj_general'];
+  const proceed = hasDataAlready
+    ? confirm('لديك بيانات مدخلة مسبقاً في المعالج. هل تريد استخدام هذه الفكرة كنقطة انطلاق لملء حقول التشخيص والهدف العام؟ (لن يتم حذف بقية بياناتك)')
+    : confirm('سيتم استخدام هذه الفكرة كنقطة انطلاق لملء حقول التشخيص والهدف العام في المعالج. هل تريد المتابعة؟');
+  if(!proceed) return;
+  state.answers['diag_target'] = idea.target + ' — مجال: ' + idea.domain;
+  state.answers['diag_needs'] = 'استلهاماً من نموذج «' + idea.title + '»: ' + idea.goal;
+  state.answers['obj_general'] = idea.goal;
+  state.answers['plan_duration'] = idea.duration;
+  const suggestedActivities = idea.activities.map(a=>({name:a, goal:'', target:idea.target, when:'', partners:''}));
+  state.answers['plan_activities'] = suggestedActivities;
+  const suggestedIndicators = idea.indicators.map(i=>({indicator:i, type:'', method:'', timing:''}));
+  state.answers['mon_indicators'] = suggestedIndicators;
+  saveState();
+  toast('تم استلهام الفكرة، أكمل بقية مراحل المعالج الآن', '✨');
+  state.currentStep = 0;
+  if(!state.visited.includes(0)) state.visited.push(0);
+  saveState();
+  showView('wizard');
+}
+
+/* =====================================================================
+   SUMMARY / FINAL DOCUMENT VIEW
+===================================================================== */
+function renderSummary(){
+  recomputeCompleted();
+  const total = STEPS.length;
+  const done = state.completedSteps.length;
+  const pct = Math.round((done/total)*100);
+  const complete = done===total;
+
+  document.getElementById('view-summary').innerHTML = `
+  <div class="container section doc-wrap">
+    <div class="completion-banner no-print">
+      <div class="cb-txt">
+        <strong>${complete ? '🎉 مشروعك البيداغوجي مكتمل!' : `أنجزت ${done} من ${total} مراحل (${pct}%)`}</strong>
+        <p>${complete ? 'يمكنك الآن مراجعة وثيقة المشروع الكاملة أدناه، ثم طباعتها أو تصديرها.' : 'يمكنك عرض المسودة الحالية أدناه، وإكمال المراحل الناقصة من المعالج في أي وقت.'}</p>
+      </div>
+      <div class="doc-actions">
+        ${!complete ? `<button class="btn btn-primary btn-sm" onclick="showView('wizard')">إكمال المراحل الناقصة</button>` : ''}
+        <button class="btn btn-gold btn-sm" onclick="window.print()">🖨️ طباعة / PDF</button>
+        <button class="btn btn-gold btn-sm" onclick="exportDocx()">📝 تصدير Word (.docx)</button>
+        <button class="btn btn-ghost btn-sm" onclick="exportJSON()">📤 تصدير JSON</button>
+        <button class="btn btn-ghost btn-sm" onclick="exportHTMLReport()">📄 تصدير HTML</button>
+        <label class="btn btn-ghost btn-sm" style="margin:0;">📥 استيراد JSON
+          <input type="file" accept="application/json" style="display:none" onchange="importJSON(event)">
+        </label>
+      </div>
+    </div>
+
+    <div class="print-tip no-print">💡 لإظهار ترقيم الصفحات عند الطباعة أو التصدير إلى PDF، فعّل خيار «رؤوس وتذييلات الصفحات» (Headers and footers) داخل نافذة الطباعة قبل التأكيد.</div>
+
+    <div class="glass" style="padding:26px 30px;margin-bottom:26px;" id="metaEditor"></div>
+
+    <div id="reportBody"></div>
+  </div>
+  `;
+  renderMetaEditor();
+  document.getElementById('reportBody').innerHTML = buildReportHTML();
+}
+
+function renderMetaEditor(){
+  const m = state.meta;
+  document.getElementById('metaEditor').innerHTML = `
+    <h3 style="color:var(--green-950);font-size:16px;margin-bottom:14px;">🏷️ بطاقة تعريف المشروع</h3>
+    <div class="grid-3">
+      <div class="form-block"><label>اسم المشروع البيداغوجي</label><input type="text" id="m_projectName" value="${esc(m.projectName)}" placeholder="مثال: مشروع نادي المواطنة الفاعلة"></div>
+      <div class="form-block"><label>المؤسسة / الديوان</label><input type="text" id="m_institution" value="${esc(m.institution)}" placeholder="مؤسسة الشباب..."></div>
+      <div class="form-block"><label>تاريخ الإعداد</label><input type="text" id="m_date" value="${esc(m.dateCreated)}" placeholder="مثال: 2026/07/04"></div>
+    </div>
+    <h3 style="color:var(--green-950);font-size:16px;margin:18px 0 14px;">✅ اعتماد الوثيقة</h3>
+    <div class="grid-3">
+      <div class="form-block"><label>اسم ولقب المسؤول عن الاعتماد</label><input type="text" id="m_responsibleName" value="${esc(m.responsibleName)}" placeholder="مثال: أ. فلان بن فلان"></div>
+      <div class="form-block"><label>الصفة / المنصب</label><input type="text" id="m_responsibleRole" value="${esc(m.responsibleRole)}" placeholder="مثال: مدير المؤسسة"></div>
+      <div class="form-block"><label>تاريخ الاعتماد</label><input type="text" id="m_approvalDate" value="${esc(m.approvalDate)}" placeholder="مثال: 2026/07/04"></div>
+    </div>
+  `;
+  const map = {m_projectName:'projectName', m_institution:'institution', m_date:'dateCreated',
+    m_responsibleName:'responsibleName', m_responsibleRole:'responsibleRole', m_approvalDate:'approvalDate'};
+  Object.keys(map).forEach(id=>{
+    document.getElementById(id).addEventListener('input', e=>{
+      state.meta[map[id]] = e.target.value;
+      saveState();
+      document.getElementById('reportBody').innerHTML = buildReportHTML();
+    });
+  });
+}
+
+function fieldValueDisplay(f, val){
+  if(f.type==='checklist'){
+    if(!val || val.length===0) return null;
+    return `<div class="lib-tags">${val.map(v=>`<span class="tag">${esc(v)}</span>`).join('')}</div>`;
+  }
+  if(f.type==='group'){
+    const rows = (val||[]).filter(r=>Object.values(r).some(x=>x && String(x).trim()!==''));
+    if(rows.length===0) return null;
+    return `<table><thead><tr>${f.columns.map(c=>`<th>${esc(c.label)}</th>`).join('')}</tr></thead>
+      <tbody>${rows.map(r=>`<tr>${f.columns.map(c=>`<td>${esc(r[c.id]||'—')}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  }
+  if(!val || String(val).trim()==='') return null;
+  return `<p>${esc(val).replace(/\n/g,'<br>')}</p>`;
+}
+
+function buildReportHTML(){
+  const m = state.meta;
+  const sections = STEPS.map(step=>{
+    const fieldsHtml = step.fields.map(f=>{
+      const disp = fieldValueDisplay(f, state.answers[f.id]);
+      return `<div style="margin-bottom:12px;">
+        <strong style="font-size:12.8px;color:var(--green-800);">${esc(f.label)}</strong>
+        <div class="doc-body">${disp || '<span class="doc-empty">لم يتم تعبئة هذا الحقل بعد</span>'}</div>
+      </div>`;
+    }).join('');
+    return `<div class="doc-section">
+      <h3><span class="n">${step.num}</span> ${step.icon} ${esc(step.title)}</h3>
+      <div class="doc-body">${fieldsHtml}</div>
+    </div>`;
+  }).join('');
+
+  const toc = `<div class="print-toc">
+    <h3 style="color:var(--green-950);font-size:18px;margin-bottom:18px;">📑 فهرس المحتويات</h3>
+    <ol style="font-size:14px;color:var(--ink-soft);line-height:2.1;padding-inline-start:22px;">
+      ${STEPS.map(s=>`<li>${esc(s.title)}</li>`).join('')}
+      <li>اعتماد الوثيقة</li>
+    </ol>
+  </div>`;
+
+  const approval = `<div class="doc-section doc-approval">
+    <h3>✅ اعتماد الوثيقة</h3>
+    <div class="approval-grid">
+      <div class="approval-col">
+        <p><strong>الاسم واللقب:</strong> ${esc(m.responsibleName) || '—'}</p>
+        <p><strong>الصفة / المنصب:</strong> ${esc(m.responsibleRole) || '—'}</p>
+        <p><strong>التاريخ:</strong> ${esc(m.approvalDate) || '—'}</p>
+        <div class="signature-line">التوقيع: ______________________</div>
+      </div>
+      <div class="approval-col stamp-box">ختم المؤسسة</div>
+    </div>
+  </div>`;
+
+  return `
+    <div class="doc-cover">
+      <div class="k1">مشروع بيداغوجي — ديوان قطاع الشباب والرياضة</div>
+      <h2>${esc(m.projectName) || 'مشروع بيداغوجي بدون عنوان'}</h2>
+      <div class="meta">
+        <span>🏛️ ${esc(m.institution) || 'غير محدد'}</span>
+        <span>📅 ${esc(m.dateCreated) || 'غير محدد'}</span>
+        <span>📊 اكتمال: ${overallProgress()}%</span>
+      </div>
+    </div>
+    ${toc}
+    ${sections}
+    ${approval}
+  `;
+}
+
+/* =====================================================================
+   EXPORT / IMPORT / PRINT
+===================================================================== */
+function downloadBlob(content, filename, mime){
+  const blob = new Blob([content], {type:mime});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function exportJSON(){
+  const filename = 'مشروع-بيداغوجي-' + (state.meta.projectName || 'بدون-عنوان').replace(/[^a-zA-Z0-9\u0600-\u06FF_-]/g,'_') + '.json';
+  downloadBlob(JSON.stringify(state, null, 2), filename, 'application/json');
+  toast('تم تصدير ملف JSON بنجاح', '📤');
+}
+function importJSON(evt){
+  const file = evt.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e=>{
+    try{
+      const parsed = JSON.parse(e.target.result);
+      if(!parsed.answers) throw new Error('invalid');
+      state = Object.assign(JSON.parse(JSON.stringify(defaultState)), parsed);
+      saveState();
+      recomputeCompleted();
+      toast('تم استيراد المشروع بنجاح', '📥');
+      renderSummary();
+    }catch(err){
+      toast('تعذّر قراءة الملف، تأكد أنه ملف JSON صادر عن هذا الدليل', '⚠️');
+    }
+  };
+  reader.readAsText(file, 'UTF-8');
+}
+function exportHTMLReport(){
+  const html = `<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">
+  <title>${esc(state.meta.projectName || 'مشروع بيداغوجي')}</title>
+  <style>
+    body{font-family:'Cairo',Tahoma,'Segoe UI',sans-serif;background:#f6f5f0;color:#17241d;padding:28px;max-width:880px;margin:0 auto;}
+    .doc-cover{background:linear-gradient(135deg,#0a3d2c,#0f5138);color:#fff;border-radius:14px;padding:30px;text-align:center;margin-bottom:26px;}
+    .doc-cover h2{font-size:24px;margin:10px 0 0;}
+    .doc-cover .meta{margin-top:14px;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;font-size:13px;opacity:.9;}
+    .doc-section{margin-bottom:20px;padding:18px 20px;background:#fff;border-radius:12px;border:1px solid #e3e0d3;}
+    .doc-section h3{font-size:15px;color:#0a3d2c;margin:0 0 10px;}
+    .doc-body table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px;}
+    .doc-body th{background:#ece9df;padding:6px 8px;text-align:right;}
+    .doc-body td{padding:6px 8px;border-bottom:1px solid #ece9df;}
+    .doc-empty{color:#b3a98f;font-style:italic;}
+    strong{color:#0f5138;}
+    .print-toc{display:none;}
+  </style></head><body>${buildReportHTML()}</body></html>`;
+  const filename = 'تقرير-مشروع-بيداغوجي-' + (state.meta.projectName || 'بدون-عنوان').replace(/[^a-zA-Z0-9\u0600-\u06FF_-]/g,'_') + '.html';
+  downloadBlob(html, filename, 'text/html');
+  toast('تم تصدير تقرير HTML بنجاح', '📄');
+}
+
+/* =====================================================================
+   WORD (.docx) EXPORT — fully offline, no libraries.
+   A .docx file is just a ZIP archive of XML parts (OOXML WordprocessingML).
+   Below: a minimal pure-JS ZIP writer (store method) + CRC32, plus a small
+   WordprocessingML builder, so the final project can be exported as a
+   real, valid Word document without any server or internet connection.
+===================================================================== */
+function crc32(bytes){
+  let c;
+  const table = crc32._table || (crc32._table = (function(){
+    const t = [];
+    for(let n=0;n<256;n++){
+      c = n;
+      for(let k=0;k<8;k++){ c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1); }
+      t[n] = c;
+    }
+    return t;
+  })());
+  let crc = 0 ^ (-1);
+  for(let i=0;i<bytes.length;i++){ crc = (crc >>> 8) ^ table[(crc ^ bytes[i]) & 0xFF]; }
+  return (crc ^ (-1)) >>> 0;
+}
+function docxStrToBytes(str){ return new TextEncoder().encode(str); }
+function zU16(n){ return [n & 0xFF, (n>>>8) & 0xFF]; }
+function zU32(n){ return [n & 0xFF, (n>>>8) & 0xFF, (n>>>16) & 0xFF, (n>>>24) & 0xFF]; }
+function buildZip(files){
+  let localParts = [], centralParts = [], offset = 0;
+  files.forEach(f=>{
+    const nameBytes = docxStrToBytes(f.name);
+    const data = f.content;
+    const crc = crc32(data);
+    const size = data.length;
+    const localHeader = [
+      ...zU32(0x04034b50), ...zU16(20), ...zU16(0), ...zU16(0), ...zU16(0), ...zU16(0),
+      ...zU32(crc), ...zU32(size), ...zU32(size), ...zU16(nameBytes.length), ...zU16(0)
+    ];
+    const localEntry = new Uint8Array(localHeader.length + nameBytes.length + data.length);
+    localEntry.set(localHeader, 0);
+    localEntry.set(nameBytes, localHeader.length);
+    localEntry.set(data, localHeader.length + nameBytes.length);
+    localParts.push(localEntry);
+    const centralHeader = [
+      ...zU32(0x02014b50), ...zU16(20), ...zU16(20), ...zU16(0), ...zU16(0), ...zU16(0), ...zU16(0),
+      ...zU32(crc), ...zU32(size), ...zU32(size), ...zU16(nameBytes.length), ...zU16(0), ...zU16(0),
+      ...zU16(0), ...zU16(0), ...zU32(0), ...zU32(offset)
+    ];
+    const centralEntry = new Uint8Array(centralHeader.length + nameBytes.length);
+    centralEntry.set(centralHeader, 0);
+    centralEntry.set(nameBytes, centralHeader.length);
+    centralParts.push(centralEntry);
+    offset += localEntry.length;
+  });
+  const centralSize = centralParts.reduce((a,p)=>a+p.length, 0);
+  const centralOffset = offset;
+  const eocd = [
+    ...zU32(0x06054b50), ...zU16(0), ...zU16(0), ...zU16(files.length), ...zU16(files.length),
+    ...zU32(centralSize), ...zU32(centralOffset), ...zU16(0)
+  ];
+  const out = new Uint8Array(offset + centralSize + eocd.length);
+  let pos = 0;
+  localParts.forEach(p=>{ out.set(p, pos); pos += p.length; });
+  centralParts.forEach(p=>{ out.set(p, pos); pos += p.length; });
+  out.set(new Uint8Array(eocd), pos);
+  return out;
+}
+
+function xmlEsc(s){
+  if(s===undefined || s===null) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+}
+function docxP(text, opts){
+  opts = opts || {};
+  const styleTag = opts.style ? `<w:pStyle w:val="${opts.style}"/>` : '';
+  const jc = opts.center ? 'center' : 'right';
+  const bold = opts.bold ? '<w:b/>' : '';
+  const lines = String(text===undefined||text===null?'':text).split('\n');
+  return lines.map(line=>
+    `<w:p><w:pPr>${styleTag}<w:bidi/><w:jc w:val="${jc}"/></w:pPr><w:r><w:rPr>${bold}<w:rtl/><w:lang w:bidi="ar-DZ"/></w:rPr><w:t xml:space="preserve">${xmlEsc(line)}</w:t></w:r></w:p>`
+  ).join('');
+}
+function docxHeading(text, level){
+  return `<w:p><w:pPr><w:pStyle w:val="Heading${level}"/><w:bidi/><w:jc w:val="right"/></w:pPr><w:r><w:rPr><w:rtl/><w:lang w:bidi="ar-DZ"/></w:rPr><w:t xml:space="preserve">${xmlEsc(text)}</w:t></w:r></w:p>`;
+}
+function docxTable(headers, rows){
+  const tblGrid = headers.map(()=>`<w:gridCol/>`).join('');
+  const headerRow = `<w:tr>${headers.map(h=>
+    `<w:tc><w:tcPr><w:shd w:val="clear" w:fill="0A3D2C"/></w:tcPr><w:p><w:pPr><w:bidi/><w:jc w:val="right"/></w:pPr><w:r><w:rPr><w:b/><w:color w:val="FFFFFF"/><w:rtl/></w:rPr><w:t xml:space="preserve">${xmlEsc(h)}</w:t></w:r></w:p></w:tc>`
+  ).join('')}</w:tr>`;
+  const bodyRows = rows.map(r=>`<w:tr>${r.map(cell=>
+    `<w:tc><w:p><w:pPr><w:bidi/><w:jc w:val="right"/></w:pPr><w:r><w:rPr><w:rtl/></w:rPr><w:t xml:space="preserve">${xmlEsc(cell||'—')}</w:t></w:r></w:p></w:tc>`
+  ).join('')}</w:tr>`).join('');
+  return `<w:tbl><w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="0" w:type="auto"/><w:bidiVisual/></w:tblPr><w:tblGrid>${tblGrid}</w:tblGrid>${headerRow}${bodyRows}</w:tbl>`;
+}
+const DOCX_STYLES_XML = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/><w:sz w:val="22"/><w:lang w:val="ar-DZ" w:bidi="ar-DZ"/></w:rPr></w:rPrDefault></w:docDefaults>
+<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style>
+<w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/><w:pPr><w:spacing w:before="280" w:after="140"/></w:pPr><w:rPr><w:b/><w:color w:val="0A3D2C"/><w:sz w:val="30"/></w:rPr></w:style>
+<w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:basedOn w:val="Normal"/><w:pPr><w:spacing w:before="200" w:after="100"/></w:pPr><w:rPr><w:b/><w:color w:val="146849"/><w:sz w:val="24"/></w:rPr></w:style>
+<w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:basedOn w:val="Normal"/><w:pPr><w:spacing w:after="220"/><w:jc w:val="center"/></w:pPr><w:rPr><w:b/><w:color w:val="0A3D2C"/><w:sz w:val="40"/></w:rPr></w:style>
+<w:style w:type="table" w:styleId="TableGrid"><w:name w:val="Table Grid"/><w:tblPr><w:tblBorders>
+<w:top w:val="single" w:sz="4" w:color="CCCCCC"/><w:left w:val="single" w:sz="4" w:color="CCCCCC"/>
+<w:bottom w:val="single" w:sz="4" w:color="CCCCCC"/><w:right w:val="single" w:sz="4" w:color="CCCCCC"/>
+<w:insideH w:val="single" w:sz="4" w:color="CCCCCC"/><w:insideV w:val="single" w:sz="4" w:color="CCCCCC"/>
+</w:tblBorders></w:tblPr></w:style>
+</w:styles>`;
+const DOCX_CONTENT_TYPES = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+<Default Extension="xml" ContentType="application/xml"/>
+<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>
+<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>
+</Types>`;
+const DOCX_RELS_ROOT = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>
+</Relationships>`;
+const DOCX_DOC_RELS = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+</Relationships>`;
+function docxCoreXml(title){
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<dc:title>${xmlEsc(title)}</dc:title>
+<dc:creator>ديوان قطاع الشباب والرياضة</dc:creator>
+</cp:coreProperties>`;
+}
+function fieldValueDocx(f, val){
+  if(f.type==='checklist'){
+    if(!val || val.length===0) return null;
+    return docxP(val.map(v=>'✔ '+v).join('\n'));
+  }
+  if(f.type==='group'){
+    const rows = (val||[]).filter(r=>Object.values(r).some(x=>x && String(x).trim()!==''));
+    if(rows.length===0) return null;
+    return docxTable(f.columns.map(c=>c.label), rows.map(r=>f.columns.map(c=>r[c.id]||'—')));
+  }
+  if(!val || String(val).trim()==='') return null;
+  return docxP(val);
+}
+function buildDocxBody(){
+  const m = state.meta;
+  let body = '';
+  body += `<w:p><w:pPr><w:pStyle w:val="Title"/><w:bidi/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:rtl/></w:rPr><w:t xml:space="preserve">${xmlEsc(m.projectName || 'مشروع بيداغوجي بدون عنوان')}</w:t></w:r></w:p>`;
+  body += docxP('مشروع بيداغوجي — ديوان قطاع الشباب والرياضة', {center:true});
+  body += docxP('المؤسسة: ' + (m.institution || 'غير محدد'));
+  body += docxP('تاريخ الإعداد: ' + (m.dateCreated || 'غير محدد'));
+  body += docxP('نسبة الاكتمال: ' + overallProgress() + '%');
+
+  body += docxHeading('📑 فهرس المحتويات', 1);
+  STEPS.forEach(s=> body += docxP((s.num)+'. '+s.title));
+  body += docxP('اعتماد الوثيقة');
+
+  STEPS.forEach(step=>{
+    body += docxHeading(step.num + '. ' + step.icon + ' ' + step.title, 1);
+    step.fields.forEach(f=>{
+      const disp = fieldValueDocx(f, state.answers[f.id]);
+      body += docxP(f.label, {bold:true});
+      body += disp || docxP('لم يتم تعبئة هذا الحقل بعد');
+    });
+  });
+
+  body += docxHeading('✅ اعتماد الوثيقة', 1);
+  body += docxP('الاسم واللقب: ' + (m.responsibleName || '—'));
+  body += docxP('الصفة / المنصب: ' + (m.responsibleRole || '—'));
+  body += docxP('التاريخ: ' + (m.approvalDate || '—'));
+  body += docxP('التوقيع: ______________________');
+  body += docxP('ختم المؤسسة:');
+  body += docxP('');
+  body += docxP('');
+
+  return body;
+}
+function assembleDocx(bodyContent, title){
+  const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:body>
+${bodyContent}
+<w:sectPr><w:bidi/><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr>
+</w:body>
+</w:document>`;
+  const files = [
+    {name:'[Content_Types].xml', content: docxStrToBytes(DOCX_CONTENT_TYPES)},
+    {name:'_rels/.rels', content: docxStrToBytes(DOCX_RELS_ROOT)},
+    {name:'docProps/core.xml', content: docxStrToBytes(docxCoreXml(title))},
+    {name:'word/document.xml', content: docxStrToBytes(documentXml)},
+    {name:'word/_rels/document.xml.rels', content: docxStrToBytes(DOCX_DOC_RELS)},
+    {name:'word/styles.xml', content: docxStrToBytes(DOCX_STYLES_XML)}
+  ];
+  return buildZip(files);
+}
+function exportDocx(){
+  try{
+    const title = state.meta.projectName || 'مشروع بيداغوجي';
+    const bytes = assembleDocx(buildDocxBody(), title);
+    const blob = new Blob([bytes], {type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'مشروع-بيداغوجي-' + (state.meta.projectName || 'بدون-عنوان').replace(/[^a-zA-Z0-9\u0600-\u06FF_-]/g,'_') + '.docx';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast('تم تصدير ملف Word بنجاح', '📝');
+  }catch(err){
+    toast('تعذّر إنشاء ملف Word، جرّب تصدير HTML أو الطباعة بدلاً من ذلك', '⚠️');
+  }
+}
+
+/* =====================================================================
+   SMART ASSISTANT — fully offline, rule-based search & templating.
+   No network calls at all. Its job: make the wizard approachable for a
+   first-time user by (1) explaining the methodology in plain language,
+   (2) suggesting ready-made projects from the bank, and (3) helping
+   fill in each field, including one-click worked examples.
+===================================================================== */
+const assistState = { open:false, tab:'suggest', chat:[
+  {role:'bot', text:'مرحباً 👋 أنا مساعدك المدمج لهذا الدليل (يعمل بالكامل دون إنترنت، مجاناً وفي كل مكان). أقدر أساعدك في: اقتراح مشروع جاهز من البنك، مساعدتك خطوة بخطوة في تعبئة المرحلة التي تعمل عليها، أو شرح أي مصطلح لا تفهمه من تبويب «📖 قاموس المصطلحات». جرّب أن تسألني: «اقترح لي مشروعاً عن الرياضة» أو «ما معنى SMART؟»'}
+]};
+
+function normalizeAr(s){
+  if(!s) return '';
+  return String(s)
+    .replace(/[إأآا]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه')
+    .replace(/[\u064B-\u0652]/g,'') // diacritics
+    .replace(/[^\u0621-\u064Aa-zA-Z0-9\s]/g,' ') // keep only Arabic letters + latin/digits
+    .toLowerCase().trim();
+}
+function tokenize(s){
+  return normalizeAr(s).split(/\s+/).filter(w=>w.length>1);
+}
+const STOPWORDS = new Set(['من','في','على','الى','إلى','عن','مع','هذا','هذه','ذلك','التي','الذي','و','او','أو','لل','هل','كيف','ما','ماذا','اقترح','لي','مشروع','فكرة','نادي','معنى']);
+function meaningfulTokens(s){ return tokenize(s).filter(w=>!STOPWORDS.has(w)); }
+
+function scoreText(tokens, text){
+  const norm = normalizeAr(text);
+  let score = 0;
+  tokens.forEach(t=>{ if(norm.includes(t)) score += (t.length>3?2:1); });
+  return score;
+}
+function searchLibrary(query, limit){
+  const tokens = meaningfulTokens(query);
+  if(tokens.length===0) return [];
+  const scored = LIBRARY_FULL.map(item=>{
+    const haystack = [item.title, item.domain, item.goal, ...(item.activities||[]), ...(item.indicators||[])].join(' ');
+    return {item, score: scoreText(tokens, haystack), tier:'full'};
+  });
+  const scoredBasic = LIBRARY_BASIC.map(item=>({item, score: scoreText(tokens, item.title), tier:'basic'}));
+  const all = [...scored, ...scoredBasic].filter(x=>x.score>0);
+  all.sort((a,b)=>b.score-a.score);
+  return all.slice(0, limit||5);
+}
+function bestStepMatch(query){
+  const tokens = meaningfulTokens(query);
+  if(tokens.length===0) return null;
+  let best=null, bestScore=0;
+  STEPS.forEach(step=>{
+    const titleScore = scoreText(tokens, step.title + ' ' + step.subtitle) * 4;
+    const bodyScore = scoreText(tokens, [step.objective, ...step.howTo, ...step.tips, ...step.mistakes].join(' '));
+    const sc = titleScore + bodyScore;
+    if(sc>bestScore){ bestScore=sc; best=step; }
+  });
+  return bestScore>0 ? best : null;
+}
+function bestGlossaryMatch(query){
+  const tokens = meaningfulTokens(query);
+  if(tokens.length===0) return null;
+  let best=null, bestScore=0;
+  GLOSSARY.forEach(g=>{
+    const sc = scoreText(tokens, g.term + ' ' + g.def) * (scoreText(tokens, g.term)>0 ? 3 : 1);
+    if(sc>bestScore){ bestScore=sc; best=g; }
+  });
+  return bestScore>0 ? best : null;
+}
+
+/* ---------- panel open/close ---------- */
+function toggleAssistant(force){
+  assistState.open = (force!==undefined) ? force : !assistState.open;
+  document.getElementById('assistPanel').classList.toggle('open', assistState.open);
+  document.getElementById('assistBadge').style.display = 'none';
+  if(assistState.open) renderAssistant();
+}
+function switchAssistTab(tab){
+  assistState.tab = tab;
+  renderAssistant();
+}
+function isWizardActive(){
+  return !document.getElementById('view-wizard').classList.contains('hidden');
+}
+
+/* ---------- main render ---------- */
+function renderAssistant(){
+  const tabs = [
+    {id:'suggest', label:'💡 اقتراح مشاريع'},
+    {id:'fill', label:'✍️ مساعدة التعبئة'},
+    {id:'chat', label:'💬 اسأل سؤالاً'},
+    {id:'glossary', label:'📖 قاموس المصطلحات'}
+  ];
+  document.getElementById('assistTabs').innerHTML = tabs.map(t=>
+    `<button class="assist-tab ${assistState.tab===t.id?'active':''}" onclick="switchAssistTab('${t.id}')">${t.label}</button>`
+  ).join('');
+
+  const body = document.getElementById('assistBody');
+  if(assistState.tab==='suggest') body.innerHTML = renderSuggestTab();
+  else if(assistState.tab==='fill') body.innerHTML = renderFillTab();
+  else if(assistState.tab==='glossary') body.innerHTML = renderGlossaryTab();
+  else body.innerHTML = renderChatTab();
+
+  if(assistState.tab==='chat'){
+    const log = document.getElementById('assistChatLog');
+    if(log) log.scrollTop = log.scrollHeight;
+    const inp = document.getElementById('assistChatInput');
+    if(inp) inp.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); sendAssistChat(); } });
+  }
+  if(assistState.tab==='suggest'){
+    const inp = document.getElementById('assistSearchInput');
+    if(inp) inp.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); runAssistSearch(); } });
+  }
+}
+
+/* ---------- Tab 1: Suggest ready projects ---------- */
+let lastSuggestQuery = '';
+function renderSuggestTab(){
+  const domainsSample = [...new Set(LIBRARY_FULL.map(x=>x.domain))].slice(0,6);
+  const results = lastSuggestQuery ? searchLibrary(lastSuggestQuery, 6) : [];
+  return `
+    <div class="assist-note">💡 اكتب مجالاً أو كلمة مفتاحية (مثال: بيئة، رياضة، رقمنة، قيادة) وسأقترح عليك أقرب المشاريع الجاهزة من البنك، لتستخدمها كنقطة انطلاق سريعة.</div>
+    <div class="assist-search-row">
+      <input type="text" id="assistSearchInput" placeholder="عن ماذا تبحث؟" value="${esc(lastSuggestQuery)}">
+      <button onclick="runAssistSearch()">بحث</button>
+    </div>
+    <div class="assist-chip-row">
+      ${domainsSample.map(d=>`<button class="assist-chip" onclick="quickAssistSearch('${esc(d).replace(/'/g,"\\'")}')">${esc(d)}</button>`).join('')}
+    </div>
+    <div id="assistResults">
+      ${results.length ? results.map(r=>renderAssistResultCard(r)).join('') :
+        (lastSuggestQuery ? `<div class="assist-empty"><div class="big">🔍</div>لم أجد تطابقاً دقيقاً. جرّب كلمة أعم مثل «ثقافة» أو «صحة».</div>`
+        : `<div class="assist-empty"><div class="big">📚</div>ابدأ بكتابة كلمة مفتاحية أو اختر مجالاً من الأعلى.</div>`)}
+    </div>
+  `;
+}
+function renderAssistResultCard(r){
+  const it = r.item;
+  if(r.tier==='full'){
+    return `<div class="assist-result">
+      <h5>${esc(it.title)} <span class="match">${esc(it.domain)}</span></h5>
+      <p>${esc(it.goal)}</p>
+      <div class="actions">
+        <button class="primary" onclick="assistUseLibraryIdea(${it.num})">استخدم كنقطة انطلاق</button>
+        <button class="secondary" onclick="showView('library'); toggleAssistant(false);">عرض التفاصيل</button>
+      </div>
+    </div>`;
+  }
+  return `<div class="assist-result">
+    <h5>${esc(it.title)} <span class="match">فكرة أولية</span></h5>
+    <p>عنوان مشروع إضافي من السلسلة المرجعية، يصلح كنقطة انطلاق لتطويره كاملاً عبر المعالج.</p>
+    <div class="actions">
+      <button class="primary" onclick="assistUseBasicIdea(${it.num})">استخدم هذا العنوان</button>
+    </div>
+  </div>`;
+}
+function runAssistSearch(){
+  lastSuggestQuery = document.getElementById('assistSearchInput').value;
+  renderAssistant();
+}
+function quickAssistSearch(term){
+  lastSuggestQuery = term;
+  renderAssistant();
+}
+function assistUseLibraryIdea(num){
+  useLibraryIdea(num); // reuse existing library seeding logic
+  toggleAssistant(false);
+}
+function assistUseBasicIdea(num){
+  const idea = LIBRARY_BASIC.find(x=>x.num===num);
+  if(!idea) return;
+  if(!confirm('سيتم استخدام هذا العنوان كنقطة انطلاق في مرحلة التشخيص. هل تريد المتابعة؟')) return;
+  state.answers['diag_target'] = state.answers['diag_target'] || 'الفئة المستهدفة: 15-29 سنة';
+  state.answers['diag_needs'] = (state.answers['diag_needs'] ? state.answers['diag_needs']+'\n' : '') + '❖ فكرة مقترحة للتطوير: ' + idea.title;
+  saveState();
+  toast('تم إدراج الفكرة في مرحلة التشخيص', '✨');
+  state.currentStep = 0;
+  if(!state.visited.includes(0)) state.visited.push(0);
+  saveState();
+  showView('wizard');
+  toggleAssistant(false);
+}
+
+/* ---------- Tab 2: Contextual fill help ---------- */
+function renderFillTab(){
+  if(!isWizardActive()){
+    return `<div class="assist-empty"><div class="big">🧭</div>افتح المعالج التفاعلي أولاً لأتمكن من مساعدتك في تعبئة المرحلة التي تعمل عليها حالياً.
+      <div style="margin-top:14px;"><button style="border:none;background:var(--green-900);color:#fff;border-radius:8px;padding:9px 16px;font-size:12.5px;font-weight:700;" onclick="showView('wizard'); renderAssistant();">فتح المعالج</button></div>
+    </div>`;
+  }
+  const step = STEPS[state.currentStep];
+  let cards = '';
+
+  if(step.id==='diagnosis'){
+    cards += helpCard('🔎','ابحث عن مشاريع مشابهة', 'اكتب الفئة المستهدفة أو المجال في الحقل الأول، وسأقترح عليك احتياجات شائعة من نماذج مشابهة في البنك.',
+      `assistFillDiagnosisNeeds()`, 'اقترح احتياجات شائعة');
+  } else if(step.id==='problematic'){
+    cards += helpCard('❓','توليد مسودة إشكالية', 'سأحوّل أهم حاجة أدخلتها في مرحلة التشخيص إلى سؤال إشكالية مبدئي يمكنك تعديله وصقله.',
+      `assistDraftProblematic()`, 'توليد مسودة الإشكالية');
+  } else if(step.id==='objectives'){
+    cards += helpCard('🎯','اقتراح هدف SMART', 'سأولّد سطراً مقترحاً في جدول الأهداف الإجرائية بالاعتماد على الهدف العام الذي كتبته، لتعديل تفاصيله (المؤشر، القيمة، الأجل).',
+      `assistSuggestSmartRow()`, 'إضافة اقتراح إلى الجدول');
+  } else if(step.id==='planning'){
+    cards += helpCard('🧩','اقتراح أنشطة جاهزة', 'سأبحث عن أقرب نموذج مشابه في البنك بناءً على تشخيصك وأهدافك، وأضيف أنشطته المقترحة إلى جدول الأنشطة (إضافة وليس استبدالاً).',
+      `assistSuggestActivities()`, 'إضافة أنشطة مقترحة');
+  } else if(step.id==='monitoring'){
+    cards += helpCard('📡','اقتراح مؤشرات متابعة', 'سأقترح مؤشرات متابعة مستوحاة من نماذج مشابهة في البنك بناءً على مشروعك.',
+      `assistSuggestIndicators()`, 'إضافة مؤشرات مقترحة');
+  } else if(step.id==='sustainability'){
+    cards += helpCard('♻️','مسودة خطة استمرارية', 'سأقترح صياغة أولية لخطة الاستمرارية يمكنك تخصيصها حسب واقع مؤسستك.',
+      `assistDraftSustainability()`, 'توليد مسودة الاستمرارية');
+  }
+
+  cards += `<div class="assist-help-card">
+    <h5>📝 هل تفضّل مثالاً كاملاً جاهزاً؟</h5>
+    <p>كل حقل في هذه المرحلة يحتوي زر «💡 عرض مثال توضيحي» أسفله مباشرة في نموذج التعبئة. اضغط عليه لرؤية إجابة نموذجية كاملة، ويمكنك إدراجها ثم تعديلها لتناسب مشروعك بدلاً من الكتابة من الصفر.</p>
+  </div>`;
+
+  const tip = step.tips[Math.floor(Math.random()*step.tips.length)];
+  const mistake = step.mistakes[0];
+  cards += `<div class="assist-help-card">
+    <h5>💡 نصيحة سريعة لهذه المرحلة</h5>
+    <p>${esc(tip)}</p>
+  </div>
+  <div class="assist-help-card">
+    <h5>⚠️ تذكير بخطأ شائع</h5>
+    <p>${esc(mistake)}</p>
+  </div>`;
+
+  return `<div class="assist-note">أنت الآن في مرحلة: <strong>${esc(step.title)}</strong>. هذه اقتراحات مخصصة لهذه المرحلة تحديداً.</div>` + cards;
+}
+function helpCard(icon, title, desc, onclickFn, btnLabel){
+  return `<div class="assist-help-card">
+    <h5>${icon} ${esc(title)}</h5>
+    <p>${esc(desc)}</p>
+    <button onclick="${onclickFn}">${esc(btnLabel)}</button>
+  </div>`;
+}
+
+/* ---------- Insertion helpers (used by fill-help actions) ---------- */
+function refreshIfFieldVisible(fieldId){
+  const step = STEPS[state.currentStep];
+  if(isWizardActive() && step.fields.some(f=>f.id===fieldId)){
+    rerenderCurrentStepPreserveScroll();
+  }
+}
+function assistFillDiagnosisNeeds(){
+  const target = state.answers['diag_target'] || '';
+  const matches = searchLibrary(target, 2);
+  if(matches.length===0){
+    toast('اكتب الفئة المستهدفة أو المجال أولاً لأتمكن من الاقتراح', '⚠️');
+    return;
+  }
+  const suggestion = matches.map(m=>'❖ ' + (m.item.goal || m.item.title)).join('\n');
+  state.answers['diag_needs'] = (state.answers['diag_needs'] ? state.answers['diag_needs']+'\n' : '') + suggestion;
+  saveState();
+  refreshIfFieldVisible('diag_needs');
+  toast('تمت إضافة اقتراحات إلى قائمة الحاجات', '✨');
+  renderAssistant();
+}
+function assistDraftProblematic(){
+  const needs = (state.answers['diag_needs']||'').split('\n').filter(Boolean);
+  if(needs.length===0){
+    toast('أكمل مرحلة التشخيص وحدد الحاجات أولاً', '⚠️');
+    return;
+  }
+  const firstNeed = needs[0].replace(/^❖\s*/,'');
+  const draft = 'كيف يمكن معالجة "' + firstNeed + '" لدى الفئة المستهدفة داخل المؤسسة؟';
+  if(!state.answers['prob_main']){
+    state.answers['prob_main'] = draft;
+  } else {
+    state.answers['prob_main'] += '\n❖ اقتراح بديل: ' + draft;
+  }
+  saveState();
+  refreshIfFieldVisible('prob_main');
+  toast('تم توليد مسودة إشكالية، يمكنك تعديلها', '✨');
+  renderAssistant();
+}
+function assistSuggestSmartRow(){
+  const general = state.answers['obj_general'] || state.answers['prob_main'] || '';
+  if(!general.trim()){
+    toast('اكتب الهدف العام أولاً في هذه المرحلة', '⚠️');
+    return;
+  }
+  const row = {
+    goal: 'تحقيق: ' + general.slice(0,60) + (general.length>60?'…':''),
+    indicator: 'عدد المستفيدين / نسبة التغيير المحققة',
+    target: 'حدد رقماً واقعياً (مثال: 100 مستفيد أو 30%)',
+    deadline: 'خلال 6 أشهر من انطلاق المشروع'
+  };
+  if(!state.answers['obj_smart'] || state.answers['obj_smart'].length===0){
+    state.answers['obj_smart'] = [row];
+  } else {
+    const rows = state.answers['obj_smart'];
+    const isEmptyOnly = rows.length===1 && Object.values(rows[0]).every(v=>!v);
+    if(isEmptyOnly) state.answers['obj_smart'] = [row];
+    else state.answers['obj_smart'].push(row);
+  }
+  saveState();
+  refreshIfFieldVisible('obj_smart');
+  toast('تمت إضافة اقتراح هدف SMART — عدّل التفاصيل ليلائم مشروعك', '✨');
+  renderAssistant();
+}
+function assistSuggestActivities(){
+  const query = (state.answers['diag_target']||'') + ' ' + (state.answers['obj_general']||'') + ' ' + (state.answers['diag_needs']||'');
+  const matches = searchLibrary(query, 1);
+  if(matches.length===0 || matches[0].tier!=='full'){
+    toast('لم أجد نموذجاً مشابهاً كافياً بعد، أكمل التشخيص والأهداف أولاً', '⚠️');
+    return;
+  }
+  const idea = matches[0].item;
+  const newRows = idea.activities.map(a=>({name:a, goal:'', target: state.answers['diag_target']||idea.target, when:'', partners:''}));
+  const existing = state.answers['plan_activities'] || [];
+  const isEmptyOnly = existing.length<=1 && (existing.length===0 || Object.values(existing[0]).every(v=>!v));
+  state.answers['plan_activities'] = isEmptyOnly ? newRows : [...existing, ...newRows];
+  saveState();
+  refreshIfFieldVisible('plan_activities');
+  toast('تمت إضافة أنشطة مقترحة من نموذج «'+idea.title+'»', '✨');
+  renderAssistant();
+}
+function assistSuggestIndicators(){
+  const query = (state.answers['diag_target']||'') + ' ' + (state.answers['obj_general']||'');
+  const matches = searchLibrary(query, 1);
+  if(matches.length===0 || matches[0].tier!=='full'){
+    toast('لم أجد نموذجاً مشابهاً كافياً بعد', '⚠️');
+    return;
+  }
+  const idea = matches[0].item;
+  const newRows = idea.indicators.map(i=>({indicator:i, type:'', method:'', timing:''}));
+  const existing = state.answers['mon_indicators'] || [];
+  const isEmptyOnly = existing.length<=1 && (existing.length===0 || Object.values(existing[0]).every(v=>!v));
+  state.answers['mon_indicators'] = isEmptyOnly ? newRows : [...existing, ...newRows];
+  saveState();
+  refreshIfFieldVisible('mon_indicators');
+  toast('تمت إضافة مؤشرات مقترحة من نموذج «'+idea.title+'»', '✨');
+  renderAssistant();
+}
+function assistDraftSustainability(){
+  if(!state.answers['sus_plan']){
+    state.answers['sus_plan'] = 'اعتماد برنامج سنوي متجدد للمشروع داخل المؤسسة، مع تكوين فريق دائم من الشباب المتطوعين لضمان استمراريته، وتوسيع الشراكات لتنويع مصادر الدعم بعد المرحلة التجريبية الأولى.';
+    saveState();
+    refreshIfFieldVisible('sus_plan');
+    toast('تم توليد مسودة خطة استمرارية، يمكنك تخصيصها', '✨');
+  } else {
+    toast('الحقل معبأ بالفعل — عدّله يدوياً إن أردت', 'ℹ️');
+  }
+  renderAssistant();
+}
+
+/* ---------- Tab 3: Free-text chat (offline Q&A) ---------- */
+function renderChatTab(){
+  return `
+    <div class="assist-chatlog" id="assistChatLog">
+      ${assistState.chat.map(m=>`<div class="assist-msg ${m.role}">${m.text}</div>`).join('')}
+    </div>
+    <div class="assist-chat-input">
+      <input type="text" id="assistChatInput" placeholder="اكتب سؤالك هنا...">
+      <button onclick="sendAssistChat()">➤</button>
+    </div>
+  `;
+}
+function sendAssistChat(){
+  const inp = document.getElementById('assistChatInput');
+  const q = inp.value.trim();
+  if(!q) return;
+  assistState.chat.push({role:'user', text: esc(q)});
+  const answer = computeAssistAnswer(q);
+  assistState.chat.push({role:'bot', text: answer});
+  inp.value='';
+  renderAssistant();
+  switchAssistTab('chat');
+}
+function computeAssistAnswer(query){
+  const qn = normalizeAr(query);
+
+  // 0) Is it asking about a specific term/jargon word?
+  if(/معني|تعريف|ماهو|ما هو|ما هي|قاموس/.test(qn)){
+    const g = bestGlossaryMatch(query);
+    if(g) return '<strong>'+esc(g.term)+'</strong>: '+esc(g.def)+'<br><br>تفقد تبويب «📖 قاموس المصطلحات» لمزيد من المصطلحات.';
+  }
+
+  // 1) Does it look like a project/domain suggestion request?
+  const libMatches = searchLibrary(query, 3);
+  if(libMatches.length>0 && /مشروع|فكره|اقترح|نادي|شباب/.test(qn)){
+    const lines = libMatches.map(m=>'• <strong>'+esc(m.item.title)+'</strong>'+(m.item.goal?(' — '+esc(m.item.goal.slice(0,90))+(m.item.goal.length>90?'…':'')) : '')).join('<br>');
+    return 'وجدت لك هذه الاقتراحات من بنك الأفكار الجاهزة:<br><br>'+lines+'<br><br>افتح تبويب «💡 اقتراح مشاريع» لاستخدام أي منها كنقطة انطلاق مباشرة.';
+  }
+
+  // 2) Does it match a methodology step?
+  const step = bestStepMatch(query);
+  if(step){
+    return 'بخصوص مرحلة <strong>«'+esc(step.title)+'»</strong>:<br>'+esc(step.objective)+'<br><br>خطوات عملية:<br>'
+      + step.howTo.slice(0,3).map(h=>'• '+esc(h)).join('<br>')
+      + '<br><br>افتح هذه المرحلة من المعالج لمزيد من التفاصيل والحقول الجاهزة للتعبئة، ولا تنسَ زر «💡 عرض مثال توضيحي» أسفل كل حقل.';
+  }
+
+  // 3) Does it match a glossary term even without explicit "معنى"?
+  const g2 = bestGlossaryMatch(query);
+  if(g2) return '<strong>'+esc(g2.term)+'</strong>: '+esc(g2.def);
+
+  // 4) Fallback: library match without explicit keyword
+  if(libMatches.length>0){
+    const m = libMatches[0].item;
+    return 'أقرب ما وجدته متعلقاً بسؤالك هو نموذج <strong>«'+esc(m.title)+'»</strong>'+(m.goal? (': '+esc(m.goal)) : '')+'. تفقد تبويب «اقتراح مشاريع» لمزيد من الخيارات المشابهة.';
+  }
+
+  return 'لم أجد إجابة دقيقة لسؤالك بعد 🤔. جرّب صياغة أخرى، أو اسألني عن مرحلة من مراحل المشروع (مثال: «كيف أصيغ الأهداف؟»)، أو عن معنى مصطلح (مثال: «ما معنى SMART؟»)، أو عن مجال مشروع تريد أفكاراً بشأنه (مثال: «اقترح مشروعاً عن الرياضة»).';
+}
+
+/* ---------- Tab 4: Glossary (beginner-friendly term explanations) ---------- */
+function renderGlossaryTab(){
+  return `
+    <div class="assist-note">📖 مصطلحات منهجية المشروع البيداغوجي مشروحة بلغة مبسطة — مفيدة خصوصاً إن كنت تُعدّ مشروعاً بيداغوجياً للمرة الأولى.</div>
+    ${GLOSSARY.map(g=>`
+      <div class="assist-help-card">
+        <h5>📌 ${esc(g.term)}</h5>
+        <p>${esc(g.def)}</p>
+      </div>
+    `).join('')}
+  `;
+}
+
+/* ---------- Field example helpers (used inside the wizard form) ---------- */
+function toggleFieldExample(fieldId){
+  const box = document.getElementById('example-'+fieldId);
+  if(box) box.classList.toggle('hidden');
+}
+function useFieldExample(fieldId){
+  const f = currentStepFieldDef(fieldId);
+  if(!f || f.example===undefined) return;
+  if(f.type==='text' || f.type==='textarea'){
+    state.answers[fieldId] = f.example;
+  } else if(f.type==='checklist'){
+    state.answers[fieldId] = [...f.example];
+  } else if(f.type==='group'){
+    state.answers[fieldId] = f.example.map(r=>({...r}));
+  }
+  saveState();
+  rerenderCurrentStepPreserveScroll();
+  toast('تم إدراج المثال — عدّله ليلائم مشروعك الخاص', '💡');
+}
+
+/* =====================================================================
+   INIT
+===================================================================== */
+recomputeCompleted();
+showView('home');
+
+
+</script>
+</body>
+</html>
